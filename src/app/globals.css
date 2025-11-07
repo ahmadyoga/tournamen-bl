@@ -2,128 +2,74 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
 
 :root {
-  /* Light Mode Theme Color Scheme */
-  --background: #ffffff;
-  /* Pure White Background */
-  --foreground: #1f2937;
-  /* Dark Gray Text */
-  --card: #f9fafb;
-  /* Very Light Gray for cards */
-  --card-foreground: #1f2937;
-  /* Dark Gray Text */
-  --primary: #1a2332;
-  /* Deep Navy */
-  --primary-foreground: #f9fafb;
-  /* Light Text */
-  --secondary: #f3f4f6;
-  /* Light Gray */
-  --secondary-foreground: #1f2937;
-  /* Dark Gray */
-  --border: #d1d5db;
-  /* Medium Gray border */
+  --background: #fafafa;
+  --foreground: #0a0a0a;
+  --card: #ffffff;
+  --card-foreground: #0a0a0a;
+  --primary: #0ea5e9;
+  --primary-foreground: #ffffff;
+  --secondary: #f1f5f9;
+  --secondary-foreground: #0f172a;
+  --border: #e2e8f0;
   --input: #ffffff;
-  /* White input */
-  --ring: #d4af37;
-  /* Gold */
-  --muted: #f3f4f6;
-  /* Light muted */
-  --muted-foreground: #6b7280;
-  /* Medium Gray text */
-  --accent: #d4af37;
-  /* Gold */
-  --accent-foreground: #1a2332;
-  /* Deep Navy */
+  --ring: #0ea5e9;
+  --muted: #f1f5f9;
+  --muted-foreground: #64748b;
+  --accent: #0ea5e9;
+  --accent-foreground: #ffffff;
   --destructive: #ef4444;
-  /* Red for destructive actions */
   --destructive-foreground: #ffffff;
   --popover: #ffffff;
-  --popover-foreground: #1f2937;
-  --radius: 0.5rem;
+  --popover-foreground: #0a0a0a;
+  --radius: 0.75rem;
+  --success: #10b981;
+  --warning: #f59e0b;
 
-  /* Chart colors using your theme */
-  --chart-1: #1a2332;
-  /* Deep Navy */
-  --chart-2: #d4af37;
-  /* Gold */
-  --chart-3: #2563eb;
-  /* Blue accent */
-  --chart-4: #059669;
-  /* Green accent */
-  --chart-5: #dc2626;
-  /* Red accent */
+  --chart-1: #0ea5e9;
+  --chart-2: #8b5cf6;
+  --chart-3: #10b981;
+  --chart-4: #f59e0b;
+  --chart-5: #ef4444;
 
-  /* Sidebar colors */
-  --sidebar: #1a2332;
-  /* Deep Navy */
-  --sidebar-foreground: #f9fafb;
-  /* Light Text */
-  --sidebar-primary: #d4af37;
-  /* Gold */
-  --sidebar-accent: #334155;
-  /* Darker navy variant */
+  --sidebar: #ffffff;
+  --sidebar-foreground: #0a0a0a;
+  --sidebar-primary: #0ea5e9;
+  --sidebar-accent: #f1f5f9;
 }
 
 .dark {
-  /* Dark Mode Theme Color Scheme - Perfect for Billiard Places */
-  --background: #0f0f0f;
-  /* Very Dark Background */
-  --foreground: #e2e8f0;
-  /* Light Gray Text */
-  --card: #1a1a1a;
-  /* Dark Card Background */
-  --card-foreground: #e2e8f0;
-  /* Light Gray Text */
-  --primary: #d4af37;
-  /* Gold - Primary */
-  --primary-foreground: #0f0f0f;
-  /* Dark Text on Gold */
-  --secondary: #262626;
-  /* Dark Secondary */
-  --secondary-foreground: #e2e8f0;
-  /* Light Text */
-  --border: #2a2a2a;
-  /* Dark Border */
-  --input: #1a1a1a;
-  /* Dark Input */
-  --ring: #d4af37;
-  /* Gold Ring */
-  --muted: #1f1f1f;
-  /* Dark Muted */
-  --muted-foreground: #a1a1aa;
-  /* Muted Light Text */
-  --accent: #d4af37;
-  /* Gold Accent */
-  --accent-foreground: #0f0f0f;
-  /* Dark Text on Gold */
-  --destructive: #dc2626;
-  /* Red for destructive actions */
-  --destructive-foreground: #ffffff;
-  --popover: #1a1a1a;
-  /* Dark Popover */
-  --popover-foreground: #e2e8f0;
-  /* Light Text */
+  --background: #0a0a0a;
+  --foreground: #fafafa;
+  --card: #141414;
+  --card-foreground: #fafafa;
+  --primary: #38bdf8;
+  --primary-foreground: #0a0a0a;
+  --secondary: #1e293b;
+  --secondary-foreground: #f1f5f9;
+  --border: #27272a;
+  --input: #18181b;
+  --ring: #38bdf8;
+  --muted: #1e293b;
+  --muted-foreground: #94a3b8;
+  --accent: #38bdf8;
+  --accent-foreground: #0a0a0a;
+  --destructive: #ef4444;
+  --destructive-foreground: #fafafa;
+  --popover: #141414;
+  --popover-foreground: #fafafa;
+  --success: #10b981;
+  --warning: #f59e0b;
 
-  /* Chart colors for dark mode */
-  --chart-1: #d4af37;
-  /* Gold */
-  --chart-2: #f59e0b;
-  /* Amber */
-  --chart-3: #3b82f6;
-  /* Blue */
-  --chart-4: #10b981;
-  /* Emerald */
-  --chart-5: #ef4444;
-  /* Red */
+  --chart-1: #38bdf8;
+  --chart-2: #a78bfa;
+  --chart-3: #34d399;
+  --chart-4: #fbbf24;
+  --chart-5: #f87171;
 
-  /* Sidebar colors for dark mode */
   --sidebar: #0a0a0a;
-  /* Very Dark Sidebar */
-  --sidebar-foreground: #e2e8f0;
-  /* Light Text */
-  --sidebar-primary: #d4af37;
-  /* Gold */
-  --sidebar-accent: #1f1f1f;
-  /* Dark Accent */
+  --sidebar-foreground: #fafafa;
+  --sidebar-primary: #38bdf8;
+  --sidebar-accent: #1e293b;
 }
 
 body {
@@ -135,14 +81,44 @@ body {
 
 /* Custom animations */
 @keyframes float {
-
-  0%,
-  100% {
+  0%, 100% {
     transform: translateY(0px);
   }
-
   50% {
     transform: translateY(-20px);
+  }
+}
+
+@keyframes slideInFromLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInFromRight {
+  from {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
   }
 }
 
@@ -420,4 +396,48 @@ textarea:focus::placeholder {
 
 .animate-pulse-glow {
   animation: pulse-glow 2s ease-in-out infinite;
+}
+
+.animate-slide-in-left {
+  animation: slideInFromLeft 0.6s ease-out forwards;
+}
+
+.animate-slide-in-right {
+  animation: slideInFromRight 0.6s ease-out forwards;
+}
+
+.animate-scale-in {
+  animation: scaleIn 0.5s ease-out forwards;
+}
+
+.glass-effect {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.dark .glass-effect {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.gradient-text {
+  background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.card-hover {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.card-hover:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+.dark .card-hover:hover {
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.4), 0 10px 10px -5px rgba(0, 0, 0, 0.3);
 }
