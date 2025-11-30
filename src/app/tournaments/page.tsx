@@ -99,14 +99,7 @@ export default function TournamentsPage() {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-background via-primary/5 to-background">
-      {/* Floating Background Elements */}
-      <div className="fixed inset-0 opacity-30 pointer-events-none">
-        <div className="absolute top-20 left-10 w-32 h-32 bg-cyan-500 rounded-full blur-3xl animate-float"></div>
-        <div className="absolute top-40 right-20 w-48 h-48 bg-purple-500 rounded-full blur-3xl animate-float" style={{ animationDelay: '1s' }}></div>
-        <div className="absolute bottom-20 left-1/4 w-40 h-40 bg-pink-500 rounded-full blur-3xl animate-float" style={{ animationDelay: '2s' }}></div>
-        <div className="absolute bottom-40 right-1/4 w-36 h-36 bg-orange-500 rounded-full blur-3xl animate-float" style={{ animationDelay: '3s' }}></div>
-      </div>
+    <div className="min-h-screen bg-background">
 
       <div className="container mx-auto max-w-7xl py-8 md:py-12 px-4 relative z-10">
         {/* Header */}
@@ -155,77 +148,82 @@ export default function TournamentsPage() {
 
               return (
                 <Link key={tournament.id} href={`/tournament/${tournament.id}`} className="block">
-                  <Card className={`group relative overflow-hidden border-2 ${colorScheme.border} hover:scale-105 transition-all duration-300 bg-gradient-to-br from-card to-card/50 game-card ${colorScheme.glow} shadow-xl animate-bounce-in press-effect`}
-                    style={{ animationDelay: `${index * 0.1}s` }}
-                  >
-                    {/* Top Accent Bar */}
-                    <div className={`absolute top-0 left-0 right-0 h-2 bg-gradient-to-r ${colorScheme.from} ${colorScheme.to}`}></div>
+                  <div className="game-ui-container animate-bounce-in press-effect" style={{ animationDelay: `${index * 0.1}s` }}>
+                    <div className="game-ui-inner">
+                      <div className="game-ui-content p-4 md:p-6 space-y-4">
+                        {/* Tournament Header */}
+                        <div className="flex items-start justify-between gap-2">
+                          <div className="text-4xl animate-wiggle" style={{ animationDelay: `${index * 0.2}s` }}>
+                            {colorScheme.icon}
+                          </div>
+                          <Badge className={`${colorScheme.accent} text-white font-bold text-xs px-3 py-1 rounded-full shadow-lg`}>
+                            🔥 {statusLabels[tournament.status] || tournament.status}
+                          </Badge>
+                        </div>
 
-                    {/* Icon Badge */}
-                    <div className="absolute top-4 right-4 text-4xl animate-wiggle" style={{ animationDelay: `${index * 0.2}s` }}>
-                      {colorScheme.icon}
-                    </div>
-
-                    <CardContent className="p-6 space-y-4">
-                      {/* Tournament Name */}
-                      <div className="pr-12">
-                        <h3 className="text-xl md:text-2xl font-black text-foreground group-hover:text-primary transition-colors line-clamp-2 mb-3">
+                        {/* Tournament Name */}
+                        <h3 className="text-xl md:text-2xl font-black text-white line-clamp-2 min-h-[3.5rem]">
                           {tournament.name}
                         </h3>
-                        <Badge className={`${colorScheme.accent} text-white font-bold text-xs px-3 py-1 shadow-lg`}>
-                          🔥 {statusLabels[tournament.status] || tournament.status}
-                        </Badge>
-                      </div>
 
-                      {/* Tournament Info */}
-                      <div className="space-y-2">
-                        <div className="flex items-center gap-2 text-sm font-bold text-foreground bg-muted/50 rounded-full px-4 py-2">
-                          <Zap className="w-4 h-4 text-primary" />
-                          <span>{formatLabels[tournament.format] || tournament.format}</span>
-                        </div>
-
-                        <div className="flex items-center gap-2 text-sm font-bold text-foreground bg-muted/50 rounded-full px-4 py-2">
-                          <Users className="w-4 h-4 text-primary" />
-                          <span>Max {tournament.max_teams} Teams</span>
-                        </div>
-                      </div>
-
-                      {/* Description */}
-                      {tournament.description && (
-                        <p className="text-sm text-muted-foreground line-clamp-2">
-                          {tournament.description}
-                        </p>
-                      )}
-
-                      {/* Location & Date */}
-                      <div className="space-y-2 text-xs text-muted-foreground">
-                        {tournament.location && (
-                          <div className="flex items-center gap-2">
-                            <span>📍</span>
-                            <span className="font-medium">{tournament.location}</span>
+                        {/* Tournament Info */}
+                        <div className="space-y-2">
+                          <div className="leaderboard-row">
+                            <div className="bg-gradient-to-r from-amber-100 to-amber-50 rounded-[14px] px-4 py-2 flex items-center gap-2">
+                              <Zap className="w-4 h-4 text-amber-700" />
+                              <span className="text-sm font-bold text-amber-900">{formatLabels[tournament.format] || tournament.format}</span>
+                            </div>
                           </div>
+
+                          <div className="leaderboard-row">
+                            <div className="bg-gradient-to-r from-amber-100 to-amber-50 rounded-[14px] px-4 py-2 flex items-center gap-2">
+                              <Users className="w-4 h-4 text-amber-700" />
+                              <span className="text-sm font-bold text-amber-900">Max {tournament.max_teams} Teams</span>
+                            </div>
+                          </div>
+                        </div>
+
+                        {/* Description */}
+                        {tournament.description && (
+                          <p className="text-sm text-amber-200 line-clamp-2">
+                            {tournament.description}
+                          </p>
                         )}
-                        {tournament.start_date && (
-                          <div className="flex items-center gap-2">
-                            <span>📅</span>
-                            <span className="font-medium">
-                              {new Date(tournament.start_date).toLocaleDateString('id-ID', {
-                                day: 'numeric',
-                                month: 'short',
-                                year: 'numeric'
-                              })}
+
+                        {/* Location & Date */}
+                        <div className="space-y-2 text-xs text-amber-200">
+                          {tournament.location && (
+                            <div className="flex items-center gap-2">
+                              <span>📍</span>
+                              <span className="font-medium">{tournament.location}</span>
+                            </div>
+                          )}
+                          {tournament.start_date && (
+                            <div className="flex items-center gap-2">
+                              <span>📅</span>
+                              <span className="font-medium">
+                                {new Date(tournament.start_date).toLocaleDateString('id-ID', {
+                                  day: 'numeric',
+                                  month: 'short',
+                                  year: 'numeric'
+                                })}
+                              </span>
+                            </div>
+                          )}
+                        </div>
+
+                        {/* CTA Button */}
+                        <div className="leaderboard-row">
+                          <div className="bg-gradient-to-r from-amber-100 to-amber-50 rounded-[14px] py-3 text-center">
+                            <span className="font-black text-amber-900 text-base">
+                              🎮 LIHAT DETAIL
+                              <Star className="inline ml-2 w-4 h-4" />
                             </span>
                           </div>
-                        )}
+                        </div>
                       </div>
-
-                      {/* CTA Button */}
-                      <div className={`w-full bg-gradient-to-r ${colorScheme.from} ${colorScheme.to} border-2 ${colorScheme.border} text-white font-bold py-3 rounded-xl text-center press-effect mt-4`}>
-                        🎮 LIHAT DETAIL
-                        <Star className="inline ml-2 w-4 h-4 group-hover:rotate-180 transition-transform" />
-                      </div>
-                    </CardContent>
-                  </Card>
+                    </div>
+                  </div>
                 </Link>
               );
             })}

@@ -64,58 +64,60 @@
 }
 
 .dark {
-  /* Dark Mode Theme Color Scheme - Colorful Gamified */
-  --background: #0a0a0a;
-  /* Very Dark Background */
-  --foreground: #e5e7eb;
-  /* Light Gray Text */
-  --card: #1a1a1a;
-  /* Dark Card Background */
-  --card-foreground: #e5e7eb;
-  /* Light Gray Text */
-  --primary: #10b981;
-  /* Emerald Green - Primary */
+  /* Dark Mode Theme - Game UI Style (Like Reference Image) */
+  --background: #1a1a1a;
+  /* Dark Gray Background */
+  --foreground: #ffffff;
+  /* White Text */
+  --card: #2a2a2a;
+  /* Dark Card */
+  --card-foreground: #ffffff;
+  /* White Text */
+  --primary: #D2691E;
+  /* Chocolate - Primary */
   --primary-foreground: #ffffff;
-  /* White Text on Green */
-  --secondary: #1f1f1f;
-  /* Dark Secondary */
-  --secondary-foreground: #e5e7eb;
-  /* Light Text */
-  --border: #262626;
-  /* Dark Border */
-  --input: #171717;
-  /* Dark Input */
-  --ring: #10b981;
-  /* Emerald Ring */
-  --muted: #171717;
-  /* Dark Muted */
-  --muted-foreground: #9ca3af;
-  /* Muted Light Text */
-  --accent: #10b981;
-  /* Emerald Accent */
+  /* White */
+  --secondary: #8B4513;
+  /* Saddle Brown */
+  --secondary-foreground: #ffffff;
+  /* White */
+  --border: #A0522D;
+  /* Sienna Border */
+  --input: #654321;
+  /* Dark Brown */
+  --ring: #D2691E;
+  /* Chocolate Ring */
+  --muted: #654321;
+  /* Dark Brown Muted */
+  --muted-foreground: #DEB887;
+  /* Burlywood */
+  --accent: #CD853F;
+  /* Peru Accent */
   --accent-foreground: #ffffff;
-  /* White Text on Green */
+  /* White */
   --destructive: #dc2626;
-  /* Red for destructive actions */
-  --destructive-foreground: #ffffff;
-  --popover: #1a1a1a;
-  /* Dark Popover */
-  --popover-foreground: #e5e7eb;
-  /* Light Text */
-
-  /* Chart colors for dark mode */
-  --chart-1: #10b981;
-  /* Emerald */
-  --chart-2: #f59e0b;
-  /* Amber */
-  --chart-3: #3b82f6;
-  /* Blue */
-  --chart-4: #8b5cf6;
-  /* Purple */
-  --chart-5: #ef4444;
   /* Red */
+  --destructive-foreground: #ffffff;
+  --popover: #8B4513;
+  /* Saddle Brown */
+  --popover-foreground: #ffffff;
+  /* White */
 
-  /* Colorful Game Palette */
+  /* Game UI Color Palette */
+  --game-border-outer: #D2691E;
+  /* Chocolate */
+  --game-border-inner: #F4A460;
+  /* Sandy Brown */
+  --game-content-bg: #8B4513;
+  /* Saddle Brown */
+  --game-content-dark: #654321;
+  /* Dark Brown */
+  --game-row-bg: #F4A460;
+  /* Sandy Brown */
+  --game-row-light: #FAEBD7;
+  /* Antique White */
+
+  /* Status Colors */
   --color-cyan: #06b6d4;
   --color-blue: #3b82f6;
   --color-purple: #a855f7;
@@ -124,16 +126,13 @@
   --color-yellow: #eab308;
   --color-lime: #84cc16;
   --color-red: #ef4444;
+  --color-green: #10b981;
 
-  /* Sidebar colors for dark mode */
-  --sidebar: #0a0a0a;
-  /* Very Dark Sidebar */
-  --sidebar-foreground: #e5e7eb;
-  /* Light Text */
-  --sidebar-primary: #10b981;
-  /* Emerald */
-  --sidebar-accent: #1f1f1f;
-  /* Dark Accent */
+  /* Sidebar colors */
+  --sidebar: #1a1a1a;
+  --sidebar-foreground: #ffffff;
+  --sidebar-primary: #D2691E;
+  --sidebar-accent: #8B4513;
 }
 
 body {

@@ -97,13 +97,7 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-background">
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-background via-primary/5 to-background text-foreground overflow-hidden">
-        <div className="absolute inset-0 opacity-30">
-          <div className="absolute top-10 left-10 w-48 h-48 md:w-72 md:h-72 bg-primary rounded-full blur-3xl animate-float"></div>
-          <div className="absolute bottom-10 right-10 w-64 h-64 md:w-96 md:h-96 bg-primary rounded-full blur-3xl animate-float" style={{ animationDelay: '3s' }}></div>
-          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-primary/20 rounded-full blur-3xl"></div>
-        </div>
-
+      <section className="relative bg-background text-foreground overflow-hidden">
         {/* Theme Toggle */}
         <div className="absolute top-4 right-4 z-20">
           <ThemeToggle />
@@ -149,53 +143,73 @@ export default function Home() {
               </Link>
             </div>
 
-            {/* Stats Cards */}
+            {/* Stats Cards - Game UI Style */}
             <div className="grid grid-cols-3 gap-3 md:gap-6 pt-8 max-w-2xl mx-auto">
-              <div className="bg-card/80 backdrop-blur-sm border-2 border-primary/30 rounded-2xl p-4 md:p-6 game-card animate-bounce-in" style={{ animationDelay: '0.3s' }}>
-                <div className="text-3xl md:text-4xl mb-2">👥</div>
-                <div className="text-2xl md:text-3xl font-black text-primary score-display">{totalPlayers}+</div>
-                <div className="text-xs md:text-sm text-muted-foreground font-medium">Players</div>
+              <div className="game-ui-container animate-bounce-in" style={{ animationDelay: '0.3s' }}>
+                <div className="game-ui-inner">
+                  <div className="game-ui-content p-3 md:p-4 text-center">
+                    <div className="text-3xl md:text-4xl mb-2">👥</div>
+                    <div className="text-2xl md:text-3xl font-black text-white score-display">{totalPlayers}+</div>
+                    <div className="text-xs md:text-sm text-amber-200 font-bold">Players</div>
+                  </div>
+                </div>
               </div>
-              <div className="bg-card/80 backdrop-blur-sm border-2 border-primary/30 rounded-2xl p-4 md:p-6 game-card animate-bounce-in" style={{ animationDelay: '0.4s' }}>
-                <div className="text-3xl md:text-4xl mb-2">🎮</div>
-                <div className="text-2xl md:text-3xl font-black text-primary score-display">{activeTournaments.length}</div>
-                <div className="text-xs md:text-sm text-muted-foreground font-medium">Active</div>
+              <div className="game-ui-container animate-bounce-in" style={{ animationDelay: '0.4s' }}>
+                <div className="game-ui-inner">
+                  <div className="game-ui-content p-3 md:p-4 text-center">
+                    <div className="text-3xl md:text-4xl mb-2">🎮</div>
+                    <div className="text-2xl md:text-3xl font-black text-white score-display">{activeTournaments.length}</div>
+                    <div className="text-xs md:text-sm text-amber-200 font-bold">Active</div>
+                  </div>
+                </div>
               </div>
-              <div className="bg-card/80 backdrop-blur-sm border-2 border-primary/30 rounded-2xl p-4 md:p-6 game-card animate-bounce-in" style={{ animationDelay: '0.5s' }}>
-                <div className="text-3xl md:text-4xl mb-2">🏆</div>
-                <div className="text-2xl md:text-3xl font-black text-primary score-display">1</div>
-                <div className="text-xs md:text-sm text-muted-foreground font-medium">Trophy</div>
+              <div className="game-ui-container animate-bounce-in" style={{ animationDelay: '0.5s' }}>
+                <div className="game-ui-inner">
+                  <div className="game-ui-content p-3 md:p-4 text-center">
+                    <div className="text-3xl md:text-4xl mb-2">🏆</div>
+                    <div className="text-2xl md:text-3xl font-black text-white score-display">1</div>
+                    <div className="text-xs md:text-sm text-amber-200 font-bold">Trophy</div>
+                  </div>
+                </div>
               </div>
             </div>
 
-            {/* Event Info Cards */}
+            {/* Event Info Cards - Game UI Style */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-3 pt-6 max-w-2xl mx-auto text-sm">
-              <div className="bg-card/60 backdrop-blur-sm border border-primary/20 rounded-xl p-3 flex items-center gap-3">
-                <Calendar className="w-5 h-5 text-primary flex-shrink-0" />
-                <div className="text-left">
-                  <div className="font-bold text-foreground">Daftar hingga</div>
-                  <div className="text-muted-foreground">21 November 2025</div>
+              <div className="leaderboard-row">
+                <div className="bg-gradient-to-r from-amber-100 to-amber-50 rounded-[14px] p-3 flex items-center gap-3">
+                  <Calendar className="w-5 h-5 text-amber-700 flex-shrink-0" />
+                  <div className="text-left">
+                    <div className="font-bold text-amber-900">Daftar hingga</div>
+                    <div className="text-amber-700 text-xs">21 November 2025</div>
+                  </div>
                 </div>
               </div>
-              <div className="bg-card/60 backdrop-blur-sm border border-primary/20 rounded-xl p-3 flex items-center gap-3">
-                <Calendar className="w-5 h-5 text-primary flex-shrink-0" />
-                <div className="text-left">
-                  <div className="font-bold text-foreground">Turnamen</div>
-                  <div className="text-muted-foreground">22 November 2025</div>
+              <div className="leaderboard-row">
+                <div className="bg-gradient-to-r from-amber-100 to-amber-50 rounded-[14px] p-3 flex items-center gap-3">
+                  <Calendar className="w-5 h-5 text-amber-700 flex-shrink-0" />
+                  <div className="text-left">
+                    <div className="font-bold text-amber-900">Turnamen</div>
+                    <div className="text-amber-700 text-xs">22 November 2025</div>
+                  </div>
                 </div>
               </div>
-              <div className="bg-card/60 backdrop-blur-sm border border-primary/20 rounded-xl p-3 flex items-center gap-3">
-                <Timer className="w-5 h-5 text-primary flex-shrink-0" />
-                <div className="text-left">
-                  <div className="font-bold text-foreground">Jam</div>
-                  <div className="text-muted-foreground">18:00 - 20:00 WIB</div>
+              <div className="leaderboard-row">
+                <div className="bg-gradient-to-r from-amber-100 to-amber-50 rounded-[14px] p-3 flex items-center gap-3">
+                  <Timer className="w-5 h-5 text-amber-700 flex-shrink-0" />
+                  <div className="text-left">
+                    <div className="font-bold text-amber-900">Jam</div>
+                    <div className="text-amber-700 text-xs">18:00 - 20:00 WIB</div>
+                  </div>
                 </div>
               </div>
-              <div className="bg-card/60 backdrop-blur-sm border border-primary/20 rounded-xl p-3 flex items-center gap-3">
-                <MapPin className="w-5 h-5 text-primary flex-shrink-0" />
-                <div className="text-left">
-                  <div className="font-bold text-foreground">Lokasi</div>
-                  <div className="text-muted-foreground text-xs">Greenlight Cafe</div>
+              <div className="leaderboard-row">
+                <div className="bg-gradient-to-r from-amber-100 to-amber-50 rounded-[14px] p-3 flex items-center gap-3">
+                  <MapPin className="w-5 h-5 text-amber-700 flex-shrink-0" />
+                  <div className="text-left">
+                    <div className="font-bold text-amber-900">Lokasi</div>
+                    <div className="text-amber-700 text-xs">Greenlight Cafe</div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -220,57 +234,50 @@ export default function Home() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
-            {activeTournaments.map((tournament, index) => {
-              const colors = [
-                { from: 'from-cyan-500/30', via: 'via-cyan-400/20', border: 'border-cyan-400', glow: 'shadow-cyan-500/30', text: 'text-cyan-400' },
-                { from: 'from-purple-500/30', via: 'via-purple-400/20', border: 'border-purple-400', glow: 'shadow-purple-500/30', text: 'text-purple-400' },
-                { from: 'from-pink-500/30', via: 'via-pink-400/20', border: 'border-pink-400', glow: 'shadow-pink-500/30', text: 'text-pink-400' },
-                { from: 'from-orange-500/30', via: 'via-orange-400/20', border: 'border-orange-400', glow: 'shadow-orange-500/30', text: 'text-orange-400' },
-                { from: 'from-blue-500/30', via: 'via-blue-400/20', border: 'border-blue-400', glow: 'shadow-blue-500/30', text: 'text-blue-400' },
-                { from: 'from-lime-500/30', via: 'via-lime-400/20', border: 'border-lime-400', glow: 'shadow-lime-500/30', text: 'text-lime-400' },
-              ];
-              const colorScheme = colors[index % colors.length];
-
-              return (
-                <Link href={`/tournament/${tournament.id}`} key={tournament.id} className="block">
-                  <Card
-                    className={`group cursor-pointer border-2 ${colorScheme.border} hover:scale-105 transition-all duration-300 overflow-hidden bg-gradient-to-br from-card to-card/50 game-card animate-bounce-in press-effect ${colorScheme.glow} shadow-lg`}
-                    style={{ animationDelay: `${index * 0.1}s` }}
-                  >
-                    <div className={`relative h-40 md:h-48 overflow-hidden bg-gradient-to-br ${colorScheme.from} ${colorScheme.via} to-transparent`}>
-                      <div className="absolute inset-0 flex items-center justify-center">
-                        <div className="text-6xl md:text-7xl animate-float">🎱</div>
-                      </div>
-                      <div className="absolute top-3 right-3">
-                        <Badge className={`${colorScheme.border.replace('border', 'bg')} text-white font-bold text-xs md:text-sm px-3 py-1 shadow-lg animate-wiggle`}>
+            {activeTournaments.map((tournament, index) => (
+              <Link href={`/tournament/${tournament.id}`} key={tournament.id} className="block">
+                <div className="game-ui-container animate-bounce-in press-effect" style={{ animationDelay: `${index * 0.1}s` }}>
+                  <div className="game-ui-inner">
+                    <div className="game-ui-content p-4 space-y-4">
+                      {/* Tournament Header */}
+                      <div className="flex items-start justify-between gap-2">
+                        <div className="text-4xl animate-float">🎱</div>
+                        <Badge className="bg-orange-500 text-white font-bold text-xs px-3 py-1 rounded-full shadow-md">
                           🔥 {tournament.status}
                         </Badge>
                       </div>
-                      <div className={`absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r ${colorScheme.from} via-white ${colorScheme.from}`}></div>
-                    </div>
-                    <CardContent className="p-4 md:p-6 space-y-4">
-                      <h3 className={`text-lg md:text-xl font-black group-hover:${colorScheme.text} transition-colors line-clamp-2`}>
+
+                      {/* Tournament Name */}
+                      <h3 className="text-lg md:text-xl font-black text-white line-clamp-2 min-h-[3.5rem]">
                         {tournament.name}
                       </h3>
-                      <div className="flex items-center justify-between text-xs md:text-sm">
-                        <div className="flex items-center gap-2 bg-muted/50 rounded-full px-3 py-2">
-                          <Users className={`w-4 h-4 ${colorScheme.text}`} />
-                          <span className="font-bold">{tournament.current_teams}/{tournament.max_teams}</span>
+
+                      {/* Tournament Stats */}
+                      <div className="flex items-center justify-between text-sm">
+                        <div className="flex items-center gap-2 bg-amber-900/50 rounded-full px-3 py-2">
+                          <Users className="w-4 h-4 text-amber-200" />
+                          <span className="font-bold text-white">{tournament.current_teams}/{tournament.max_teams}</span>
                         </div>
-                        <div className={`flex items-center gap-1 ${colorScheme.text} font-bold`}>
-                          <Trophy className="w-4 h-4 animate-glow-pulse" />
+                        <div className="flex items-center gap-1 text-yellow-400 font-bold">
+                          <Trophy className="w-4 h-4" />
                           <span>WIN!</span>
                         </div>
                       </div>
-                      <div className={`w-full bg-gradient-to-r ${colorScheme.from} to-transparent border-2 ${colorScheme.border} text-white font-bold py-3 rounded-xl text-center press-effect`}>
-                        🎮 MAINKAN
-                        <Target className="inline ml-2 w-4 h-4 group-hover:rotate-90 transition-transform" />
+
+                      {/* CTA Button */}
+                      <div className="leaderboard-row">
+                        <div className="bg-gradient-to-r from-amber-100 to-amber-50 rounded-[14px] py-3 text-center">
+                          <span className="font-black text-amber-900 text-base">
+                            🎮 MAINKAN
+                            <Target className="inline ml-2 w-4 h-4" />
+                          </span>
+                        </div>
                       </div>
-                    </CardContent>
-                  </Card>
-                </Link>
-              );
-            })}
+                    </div>
+                  </div>
+                </div>
+              </Link>
+            ))}
           </div>
         </div>
       </section>
