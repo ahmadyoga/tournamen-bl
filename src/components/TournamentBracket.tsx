@@ -316,10 +316,10 @@ export function TournamentBracket({ format, matches, teams }: TournamentBracketP
     const minHeight = bracketType === 'grand-final' && rounds[0]?.matches.length === 1 ? '100px' : '400px'
 
     return (
-      <Card className="bg-card border-border p-4 md:p-6 mb-8">
+      <Card className="bg-background border-border p-4 md:p-6 mb-8">
         <div className="mb-4 md:mb-6 flex flex-row justify-between gap-3 bracket-controls">
           <h2 className="text-xl md:text-2xl font-bold text-foreground flex items-center gap-3">
-            {bracketType === 'grand-final' && <Trophy className="text-accent" size={28} />}
+            {bracketType === 'grand-final' && <Trophy className="text-primary" size={28} />}
             {title}
           </h2>
 
@@ -329,12 +329,12 @@ export function TournamentBracket({ format, matches, teams }: TournamentBracketP
               onClick={() => captureScreenshot(bracketId, title)}
               variant="outline"
               size="icon"
-              className="h-9 w-9 flex-shrink-0"
+              className="h-9 w-9 flex-shrink-0 border-primary/30 hover:bg-primary/10 hover:border-primary"
               title="Lihat Fullscreen"
               disabled={isCapturing[bracketId]}
             >
               {isCapturing[bracketId] ? (
-                <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-accent"></div>
+                <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-primary"></div>
               ) : (
                 <Maximize2 className="h-4 w-4" />
               )}
@@ -350,7 +350,7 @@ export function TournamentBracket({ format, matches, teams }: TournamentBracketP
           </p>
         </div>
 
-        <div className="overflow-x-auto">
+        <div className="overflow-x-auto rounded-lg bg-black/40 p-6">
           <div
             ref={(el) => { bracketContentRefs.current[bracketId] = el }}
             className="relative"
@@ -363,9 +363,9 @@ export function TournamentBracket({ format, matches, teams }: TournamentBracketP
                 className="absolute top-0"
                 style={{ left: `${roundIndex * ROUND_WIDTH}px` }}
               >
-                <h3 className="text-lg font-semibold text-accent text-center" style={{ width: '280px' }}>
+                <h3 className="text-lg font-bold text-white text-left" style={{ width: '280px' }}>
                   {bracketType === 'grand-final'
-                    ? 'Grand Final'
+                    ? 'Final'
                     : round.name || `Round ${round.round}`}
                 </h3>
               </div>
@@ -397,38 +397,38 @@ export function TournamentBracket({ format, matches, teams }: TournamentBracketP
                       {match.note}
                     </div>
                     <div
-                      className="bg-secondary/40 border border-accent/20 rounded-lg p-3 ">
-                      <div className={`flex items-center justify-between p-2 rounded mb-1 ${isTeam1Winner
-                        ? 'bg-emerald-500/15 border-l-4 border-emerald-500/60'
-                        : 'bg-secondary/20'
+                      className="bg-black/60 border border-gray-700 rounded-lg overflow-hidden">
+                      <div className={`flex items-center justify-between px-3 py-2.5 ${isTeam1Winner
+                        ? 'bg-emerald-600/20 border-l-4 border-emerald-500'
+                        : 'bg-transparent'
                         }`}>
-                        <span className={`font-medium text-sm truncate max-w-[180px] ${isTeam1Winner ? 'text-emerald-400' : 'text-foreground'
+                        <span className={`font-medium text-sm truncate max-w-[180px] ${isTeam1Winner ? 'text-emerald-400 font-semibold' : 'text-white'
                           }`} title={team1?.name || 'TBD'}>
                           {team1?.name || 'TBD'}
                         </span>
-                        <span className={`font-bold text-lg ml-3 ${isTeam1Winner ? 'text-emerald-400' : 'text-muted-foreground'
+                        <span className={`font-bold text-xl ml-3 ${isTeam1Winner ? 'text-emerald-400' : 'text-gray-400'
                           }`}>
-                          {match.team1_score ?? '-'}
+                          {match.team1_score ?? ''}
                         </span>
                       </div>
 
-                      <div className={`flex items-center justify-between p-2 rounded ${isTeam2Winner
-                        ? 'bg-emerald-500/15 border-l-4 border-emerald-500/60'
-                        : 'bg-secondary/20'
+                      <div className={`flex items-center justify-between px-3 py-2.5 ${isTeam2Winner
+                        ? 'bg-emerald-600/20 border-l-4 border-emerald-500'
+                        : 'bg-transparent'
                         }`}>
-                        <span className={`font-medium text-sm truncate max-w-[180px] ${isTeam2Winner ? 'text-emerald-400' : 'text-foreground'
+                        <span className={`font-medium text-sm truncate max-w-[180px] ${isTeam2Winner ? 'text-emerald-400 font-semibold' : 'text-white'
                           }`} title={team2?.name || 'TBD'}>
                           {team2?.name || 'TBD'}
                         </span>
-                        <span className={`font-bold text-lg ml-3 ${isTeam2Winner ? 'text-emerald-400' : 'text-muted-foreground'
+                        <span className={`font-bold text-xl ml-3 ${isTeam2Winner ? 'text-emerald-400' : 'text-gray-400'
                           }`}>
-                          {match.team2_score ?? '-'}
+                          {match.team2_score ?? ''}
                         </span>
                       </div>
 
                       {match.status === 'in_progress' && (
-                        <div className="mt-2 text-center">
-                          <span className="text-xs text-accent font-medium">Sedang Berlangsung</span>
+                        <div className="mt-2 text-center py-1 bg-primary/20">
+                          <span className="text-xs text-primary font-medium">Sedang Berlangsung</span>
                         </div>
                       )}
                     </div>
@@ -474,15 +474,15 @@ export function TournamentBracket({ format, matches, teams }: TournamentBracketP
                       return (
                         <g key={match.id}>
                           {/* Horizontal from current match */}
-                          <line x1={x1} y1={y1} x2={midX} y2={y1} stroke="var(--foreground)" strokeWidth="2" />
+                          <line x1={x1} y1={y1} x2={midX} y2={y1} stroke="#ffffff" strokeWidth="1.5" />
                           {/* Horizontal from sibling match */}
-                          <line x1={x1} y1={siblingY} x2={midX} y2={siblingY} stroke="var(--foreground)" strokeWidth="2" />
+                          <line x1={x1} y1={siblingY} x2={midX} y2={siblingY} stroke="#ffffff" strokeWidth="1.5" />
                           {/* Vertical connecting both */}
-                          <line x1={midX} y1={siblingY} x2={midX} y2={y1} stroke="var(--foreground)" strokeWidth="2" />
+                          <line x1={midX} y1={siblingY} x2={midX} y2={y1} stroke="#ffffff" strokeWidth="1.5" />
                           {/* Horizontal to next match */}
-                          <line x1={midX} y1={y2} x2={x2} y2={y2} stroke="var(--foreground)" strokeWidth="2" />
+                          <line x1={midX} y1={y2} x2={x2} y2={y2} stroke="#ffffff" strokeWidth="1.5" />
                           {/* Vertical to next match level */}
-                          <line x1={midX} y1={Math.min(y1, siblingY)} x2={midX} y2={y2} stroke="var(--foreground)" strokeWidth="2" />
+                          <line x1={midX} y1={Math.min(y1, siblingY)} x2={midX} y2={y2} stroke="#ffffff" strokeWidth="1.5" />
                         </g>
                       )
                     }
@@ -492,9 +492,9 @@ export function TournamentBracket({ format, matches, teams }: TournamentBracketP
                     const midX = x1 + 30
                     return (
                       <g key={match.id}>
-                        <line x1={x1} y1={y1} x2={midX} y2={y1} stroke="var(--foreground)" strokeWidth="2" />
-                        <line x1={midX} y1={y1} x2={midX} y2={y2} stroke="var(--foreground)" strokeWidth="2" />
-                        <line x1={midX} y1={y2} x2={x2} y2={y2} stroke="var(--foreground)" strokeWidth="2" />
+                        <line x1={x1} y1={y1} x2={midX} y2={y1} stroke="#ffffff" strokeWidth="1.5" />
+                        <line x1={midX} y1={y1} x2={midX} y2={y2} stroke="#ffffff" strokeWidth="1.5" />
+                        <line x1={midX} y1={y2} x2={x2} y2={y2} stroke="#ffffff" strokeWidth="1.5" />
                       </g>
                     )
                   }

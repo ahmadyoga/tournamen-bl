@@ -65,63 +65,63 @@
 
 .dark {
   /* Dark Mode Theme Color Scheme - Perfect for Billiard Places */
-  --background: #0f0f0f;
+  --background: #0a0a0a;
   /* Very Dark Background */
-  --foreground: #e2e8f0;
+  --foreground: #e5e7eb;
   /* Light Gray Text */
   --card: #1a1a1a;
   /* Dark Card Background */
-  --card-foreground: #e2e8f0;
+  --card-foreground: #e5e7eb;
   /* Light Gray Text */
-  --primary: #d4af37;
-  /* Gold - Primary */
-  --primary-foreground: #0f0f0f;
-  /* Dark Text on Gold */
-  --secondary: #262626;
+  --primary: #10b981;
+  /* Emerald Green - Primary */
+  --primary-foreground: #ffffff;
+  /* White Text on Green */
+  --secondary: #1f1f1f;
   /* Dark Secondary */
-  --secondary-foreground: #e2e8f0;
+  --secondary-foreground: #e5e7eb;
   /* Light Text */
-  --border: #2a2a2a;
+  --border: #262626;
   /* Dark Border */
-  --input: #1a1a1a;
+  --input: #171717;
   /* Dark Input */
-  --ring: #d4af37;
-  /* Gold Ring */
-  --muted: #1f1f1f;
+  --ring: #10b981;
+  /* Emerald Ring */
+  --muted: #171717;
   /* Dark Muted */
-  --muted-foreground: #a1a1aa;
+  --muted-foreground: #9ca3af;
   /* Muted Light Text */
-  --accent: #d4af37;
-  /* Gold Accent */
-  --accent-foreground: #0f0f0f;
-  /* Dark Text on Gold */
+  --accent: #10b981;
+  /* Emerald Accent */
+  --accent-foreground: #ffffff;
+  /* White Text on Green */
   --destructive: #dc2626;
   /* Red for destructive actions */
   --destructive-foreground: #ffffff;
   --popover: #1a1a1a;
   /* Dark Popover */
-  --popover-foreground: #e2e8f0;
+  --popover-foreground: #e5e7eb;
   /* Light Text */
 
   /* Chart colors for dark mode */
-  --chart-1: #d4af37;
-  /* Gold */
+  --chart-1: #10b981;
+  /* Emerald */
   --chart-2: #f59e0b;
   /* Amber */
   --chart-3: #3b82f6;
   /* Blue */
-  --chart-4: #10b981;
-  /* Emerald */
+  --chart-4: #8b5cf6;
+  /* Purple */
   --chart-5: #ef4444;
   /* Red */
 
   /* Sidebar colors for dark mode */
   --sidebar: #0a0a0a;
   /* Very Dark Sidebar */
-  --sidebar-foreground: #e2e8f0;
+  --sidebar-foreground: #e5e7eb;
   /* Light Text */
-  --sidebar-primary: #d4af37;
-  /* Gold */
+  --sidebar-primary: #10b981;
+  /* Emerald */
   --sidebar-accent: #1f1f1f;
   /* Dark Accent */
 }
