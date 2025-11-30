@@ -397,38 +397,44 @@ export function TournamentBracket({ format, matches, teams }: TournamentBracketP
                       {match.note}
                     </div>
                     <div
-                      className="bg-black/60 border border-gray-700 rounded-lg overflow-hidden">
-                      <div className={`flex items-center justify-between px-3 py-2.5 ${isTeam1Winner
-                        ? 'bg-emerald-600/20 border-l-4 border-emerald-500'
+                      className="bg-gradient-to-br from-black via-gray-900 to-black border-2 border-gray-700 rounded-xl overflow-hidden shadow-xl relative">
+                      {isTeam1Winner && (
+                        <div className="absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-emerald-400 via-emerald-500 to-emerald-400 animate-pulse"></div>
+                      )}
+                      {isTeam2Winner && (
+                        <div className="absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-emerald-400 via-emerald-500 to-emerald-400 animate-pulse"></div>
+                      )}
+                      <div className={`flex items-center justify-between px-4 py-3 border-b border-gray-800 ${isTeam1Winner
+                        ? 'bg-gradient-to-r from-emerald-600/30 to-transparent'
                         : 'bg-transparent'
                         }`}>
-                        <span className={`font-medium text-sm truncate max-w-[180px] ${isTeam1Winner ? 'text-emerald-400 font-semibold' : 'text-white'
+                        <span className={`font-bold text-sm truncate max-w-[180px] ${isTeam1Winner ? 'text-emerald-400 neon-glow' : 'text-gray-300'
                           }`} title={team1?.name || 'TBD'}>
-                          {team1?.name || 'TBD'}
+                          {isTeam1Winner && '👑 '}{team1?.name || 'TBD'}
                         </span>
-                        <span className={`font-bold text-xl ml-3 ${isTeam1Winner ? 'text-emerald-400' : 'text-gray-400'
+                        <span className={`font-black text-2xl ml-3 score-display ${isTeam1Winner ? 'text-emerald-400 animate-glow-pulse' : 'text-gray-500'
                           }`}>
-                          {match.team1_score ?? ''}
+                          {match.team1_score ?? '-'}
                         </span>
                       </div>
 
-                      <div className={`flex items-center justify-between px-3 py-2.5 ${isTeam2Winner
-                        ? 'bg-emerald-600/20 border-l-4 border-emerald-500'
+                      <div className={`flex items-center justify-between px-4 py-3 ${isTeam2Winner
+                        ? 'bg-gradient-to-r from-emerald-600/30 to-transparent'
                         : 'bg-transparent'
                         }`}>
-                        <span className={`font-medium text-sm truncate max-w-[180px] ${isTeam2Winner ? 'text-emerald-400 font-semibold' : 'text-white'
+                        <span className={`font-bold text-sm truncate max-w-[180px] ${isTeam2Winner ? 'text-emerald-400 neon-glow' : 'text-gray-300'
                           }`} title={team2?.name || 'TBD'}>
-                          {team2?.name || 'TBD'}
+                          {isTeam2Winner && '👑 '}{team2?.name || 'TBD'}
                         </span>
-                        <span className={`font-bold text-xl ml-3 ${isTeam2Winner ? 'text-emerald-400' : 'text-gray-400'
+                        <span className={`font-black text-2xl ml-3 score-display ${isTeam2Winner ? 'text-emerald-400 animate-glow-pulse' : 'text-gray-500'
                           }`}>
-                          {match.team2_score ?? ''}
+                          {match.team2_score ?? '-'}
                         </span>
                       </div>
 
                       {match.status === 'in_progress' && (
-                        <div className="mt-2 text-center py-1 bg-primary/20">
-                          <span className="text-xs text-primary font-medium">Sedang Berlangsung</span>
+                        <div className="text-center py-2 bg-primary/30 border-t-2 border-primary">
+                          <span className="text-xs text-primary font-bold uppercase tracking-wider animate-pulse">⚡ LIVE ⚡</span>
                         </div>
                       )}
                     </div>

@@ -97,78 +97,106 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-background">
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-background via-background to-primary/5 text-foreground overflow-hidden border-b border-border">
-        <div className="absolute inset-0 opacity-20">
-          <div className="absolute top-20 left-20 w-72 h-72 bg-primary rounded-full blur-3xl animate-float"></div>
-          <div className="absolute bottom-20 right-20 w-96 h-96 bg-primary rounded-full blur-3xl animate-float" style={{ animationDelay: '3s' }}></div>
+      <section className="relative bg-gradient-to-br from-background via-primary/5 to-background text-foreground overflow-hidden">
+        <div className="absolute inset-0 opacity-30">
+          <div className="absolute top-10 left-10 w-48 h-48 md:w-72 md:h-72 bg-primary rounded-full blur-3xl animate-float"></div>
+          <div className="absolute bottom-10 right-10 w-64 h-64 md:w-96 md:h-96 bg-primary rounded-full blur-3xl animate-float" style={{ animationDelay: '3s' }}></div>
+          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-primary/20 rounded-full blur-3xl"></div>
         </div>
 
         {/* Theme Toggle */}
-        <div className="absolute top-6 right-6 z-20">
+        <div className="absolute top-4 right-4 z-20">
           <ThemeToggle />
         </div>
 
-        <div className="container mx-auto px-6 py-24 relative z-10">
-          <div className="max-w-4xl mx-auto text-center space-y-8 animate-fade-in-up">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-primary/50 bg-primary/10 backdrop-blur-sm">
-              <Flame className="w-4 h-4 text-primary" />
-              <span className="text-sm font-medium text-primary">TI BILLIARD CUP 2025 Sedang Berlangsung</span>
+        <div className="container mx-auto px-4 py-12 md:py-20 relative z-10">
+          <div className="max-w-4xl mx-auto text-center space-y-6 md:space-y-8">
+            {/* Animated Badge */}
+            <div className="inline-flex items-center gap-2 px-6 py-3 rounded-full border-2 border-primary bg-primary/20 backdrop-blur-sm animate-bounce-in shadow-lg shadow-primary/30">
+              <Flame className="w-5 h-5 text-primary animate-glow-pulse" />
+              <span className="text-sm md:text-base font-bold text-primary">🔥 TOURNAMENT LIVE!</span>
             </div>
 
-            <h1 className="text-5xl md:text-7xl font-bold tracking-tight">
-              Selamat Datang di{' '}
-              <span className="text-primary">TI BILLIARD CUP!</span>
+            {/* Big Trophy Animation */}
+            <div className="text-7xl md:text-9xl animate-bounce-in" style={{ animationDelay: '0.2s' }}>
+              🎱
+            </div>
+
+            <h1 className="text-4xl md:text-6xl lg:text-7xl font-black tracking-tight animate-slide-in-left">
+              <span className="neon-glow text-primary">TI BILLIARD</span>
+              <br />
+              <span className="text-foreground">CUP 2025</span>
             </h1>
 
-            <p className="text-xl md:text-2xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-              Solidaritas Antar Bidang - Bergabung. Berkompetisi. Rayakan kerja sama tim dan kesenangan.
+            <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed animate-slide-in-right">
+              ⚡ Solidaritas Antar Bidang ⚡
+              <br />
+              Bergabung • Berkompetisi • Menang!
             </p>
 
-            <div className="flex flex-col sm:flex-row gap-4 justify-center pt-6">
-              <Link href="/register">
-                <Button size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground font-semibold px-8 py-6 text-lg group shadow-lg shadow-primary/20" disabled={isRegistrationClosed}>
-                  {isRegistrationClosed ? 'Pendaftaran Ditutup' : 'Daftar Sekarang'}
-                  {!isRegistrationClosed && <ChevronRight className="ml-2 group-hover:translate-x-1 transition-transform" />}
+            {/* Big CTA Buttons */}
+            <div className="flex flex-col gap-4 pt-6">
+              <Link href="/register" className="w-full">
+                <Button size="lg" className="w-full bg-gradient-to-r from-primary to-emerald-600 hover:from-primary/90 hover:to-emerald-600/90 text-white font-bold px-8 py-7 text-xl rounded-2xl shadow-2xl shadow-primary/40 game-card press-effect animate-pulse-glow" disabled={isRegistrationClosed}>
+                  {isRegistrationClosed ? '🔒 Pendaftaran Ditutup' : '🎮 DAFTAR SEKARANG!'}
+                  {!isRegistrationClosed && <ChevronRight className="ml-2 w-6 h-6" />}
                 </Button>
               </Link>
-              <Link href="/tournaments">
-                <Button size="lg" variant="outline" className="border-2 border-primary/30 bg-transparent hover:bg-primary/10 text-foreground font-semibold px-8 py-6 text-lg">
-                  Lihat Turnamen
+              <Link href="/tournaments" className="w-full">
+                <Button size="lg" variant="outline" className="w-full border-2 border-primary bg-primary/10 hover:bg-primary/20 text-foreground font-bold px-8 py-7 text-xl rounded-2xl press-effect">
+                  🏆 Lihat Turnamen
                 </Button>
               </Link>
             </div>
 
-            <div className="flex flex-wrap justify-center gap-8 pt-12 text-sm">
-              <div className="flex items-center gap-2">
-                <Users className="w-5 h-5 text-primary" />
-                <span className="text-muted-foreground">{`${totalPlayers}+ Pemain`}</span>
+            {/* Stats Cards */}
+            <div className="grid grid-cols-3 gap-3 md:gap-6 pt-8 max-w-2xl mx-auto">
+              <div className="bg-card/80 backdrop-blur-sm border-2 border-primary/30 rounded-2xl p-4 md:p-6 game-card animate-bounce-in" style={{ animationDelay: '0.3s' }}>
+                <div className="text-3xl md:text-4xl mb-2">👥</div>
+                <div className="text-2xl md:text-3xl font-black text-primary score-display">{totalPlayers}+</div>
+                <div className="text-xs md:text-sm text-muted-foreground font-medium">Players</div>
               </div>
-              <div className="flex items-center gap-2">
-                <Gamepad2 className="w-5 h-5 text-primary" />
-                <span className="text-muted-foreground">{activeTournaments.length} Turnamen Aktif</span>
+              <div className="bg-card/80 backdrop-blur-sm border-2 border-primary/30 rounded-2xl p-4 md:p-6 game-card animate-bounce-in" style={{ animationDelay: '0.4s' }}>
+                <div className="text-3xl md:text-4xl mb-2">🎮</div>
+                <div className="text-2xl md:text-3xl font-black text-primary score-display">{activeTournaments.length}</div>
+                <div className="text-xs md:text-sm text-muted-foreground font-medium">Active</div>
               </div>
-              <div className="flex items-center gap-2">
-                <Trophy className="w-5 h-5 text-primary" />
-                <span className="text-muted-foreground">Trofi Juara</span>
+              <div className="bg-card/80 backdrop-blur-sm border-2 border-primary/30 rounded-2xl p-4 md:p-6 game-card animate-bounce-in" style={{ animationDelay: '0.5s' }}>
+                <div className="text-3xl md:text-4xl mb-2">🏆</div>
+                <div className="text-2xl md:text-3xl font-black text-primary score-display">1</div>
+                <div className="text-xs md:text-sm text-muted-foreground font-medium">Trophy</div>
               </div>
             </div>
 
-            <div className="flex flex-wrap justify-center gap-4 pt-8 text-sm text-muted-foreground">
-              <div className="flex items-center gap-2">
-                <Calendar className="w-4 h-4 text-primary" />
-                <span>Daftar hingga: 21 November 2025</span>
+            {/* Event Info Cards */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3 pt-6 max-w-2xl mx-auto text-sm">
+              <div className="bg-card/60 backdrop-blur-sm border border-primary/20 rounded-xl p-3 flex items-center gap-3">
+                <Calendar className="w-5 h-5 text-primary flex-shrink-0" />
+                <div className="text-left">
+                  <div className="font-bold text-foreground">Daftar hingga</div>
+                  <div className="text-muted-foreground">21 November 2025</div>
+                </div>
               </div>
-              <div className="flex items-center gap-2">
-                <Calendar className="w-4 h-4 text-primary" />
-                <span>Turnamen: 22 November 2025</span>
+              <div className="bg-card/60 backdrop-blur-sm border border-primary/20 rounded-xl p-3 flex items-center gap-3">
+                <Calendar className="w-5 h-5 text-primary flex-shrink-0" />
+                <div className="text-left">
+                  <div className="font-bold text-foreground">Turnamen</div>
+                  <div className="text-muted-foreground">22 November 2025</div>
+                </div>
               </div>
-              <div className="flex items-center gap-2">
-                <Timer className="w-4 h-4 text-primary" />
-                <span>18:00 - 20:00 WIB</span>
+              <div className="bg-card/60 backdrop-blur-sm border border-primary/20 rounded-xl p-3 flex items-center gap-3">
+                <Timer className="w-5 h-5 text-primary flex-shrink-0" />
+                <div className="text-left">
+                  <div className="font-bold text-foreground">Jam</div>
+                  <div className="text-muted-foreground">18:00 - 20:00 WIB</div>
+                </div>
               </div>
-              <div className="flex items-center gap-2">
-                <MapPin className="w-4 h-4 text-primary" />
-                <span>Greenlight Cafe & Billiard</span>
+              <div className="bg-card/60 backdrop-blur-sm border border-primary/20 rounded-xl p-3 flex items-center gap-3">
+                <MapPin className="w-5 h-5 text-primary flex-shrink-0" />
+                <div className="text-left">
+                  <div className="font-bold text-foreground">Lokasi</div>
+                  <div className="text-muted-foreground text-xs">Greenlight Cafe</div>
+                </div>
               </div>
             </div>
           </div>
@@ -178,53 +206,54 @@ export default function Home() {
       </section>
 
       {/* Active Tournaments Section */}
-      <section className="py-20 bg-background">
-        <div className="container mx-auto px-6">
-          <div className="text-center space-y-4 mb-12 animate-fade-in-up">
-            <Badge className="bg-primary/10 text-primary border-primary/20 px-4 py-1">
-              Sedang Aktif
-            </Badge>
-            <h2 className="text-4xl md:text-5xl font-bold">Turnamen Aktif</h2>
-            <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-              Terjun ke aksi dan berkompetisi dengan rekan kerja Anda
+      <section className="py-12 md:py-20 bg-background">
+        <div className="container mx-auto px-4">
+          <div className="text-center space-y-3 mb-8 md:mb-12">
+            <div className="inline-flex items-center gap-2 px-6 py-2 rounded-full border-2 border-primary bg-primary/20 animate-pulse-glow">
+              <span className="text-2xl animate-coin-flip">🏆</span>
+              <span className="text-sm md:text-base font-bold text-primary">ACTIVE TOURNAMENTS</span>
+            </div>
+            <h2 className="text-3xl md:text-5xl font-black neon-glow">Turnamen Aktif</h2>
+            <p className="text-muted-foreground text-base md:text-lg max-w-2xl mx-auto">
+              ⚡ Terjun ke aksi dan raih kemenangan!
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
             {activeTournaments.map((tournament, index) => (
               <Card
                 key={tournament.id}
-                className="group cursor-pointer border border-border hover:border-primary/50 transition-all duration-300 hover:shadow-xl hover:shadow-primary/10 hover:-translate-y-2 overflow-hidden animate-fade-in-up bg-card"
+                className="group cursor-pointer border-2 border-primary/30 hover:border-primary transition-all duration-300 overflow-hidden bg-gradient-to-br from-card to-card/50 game-card animate-bounce-in press-effect"
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
-                <div className="relative h-48 overflow-hidden bg-gradient-to-br from-primary/20 to-primary/5">
-                  <div className="absolute inset-0 flex items-center justify-center text-6xl">
-                    🎱
+                <div className="relative h-40 md:h-48 overflow-hidden bg-gradient-to-br from-primary/30 via-primary/20 to-transparent">
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <div className="text-6xl md:text-7xl animate-float">🎱</div>
                   </div>
                   <div className="absolute top-3 right-3">
-                    <Badge className="bg-primary text-primary-foreground font-semibold">
-                      {tournament.status}
+                    <Badge className="bg-primary text-primary-foreground font-bold text-xs md:text-sm px-3 py-1 shadow-lg animate-wiggle">
+                      🔥 {tournament.status}
                     </Badge>
                   </div>
-                  <div className="absolute inset-0 bg-gradient-to-t from-card/60 to-transparent"></div>
+                  <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-primary via-emerald-400 to-primary"></div>
                 </div>
-                <CardContent className="p-6 space-y-4">
-                  <h3 className="text-xl font-bold group-hover:text-primary transition-colors">
+                <CardContent className="p-4 md:p-6 space-y-4">
+                  <h3 className="text-lg md:text-xl font-black group-hover:text-primary transition-colors line-clamp-2">
                     {tournament.name}
                   </h3>
-                  <div className="flex items-center justify-between text-sm text-muted-foreground">
-                    <div className="flex items-center gap-2">
-                      <Users className="w-4 h-4" />
-                      <span>{tournament.current_teams}/{tournament.max_teams} tim</span>
+                  <div className="flex items-center justify-between text-xs md:text-sm">
+                    <div className="flex items-center gap-2 bg-muted/50 rounded-full px-3 py-2">
+                      <Users className="w-4 h-4 text-primary" />
+                      <span className="font-bold">{tournament.current_teams}/{tournament.max_teams}</span>
                     </div>
-                    <div className="flex items-center gap-2">
-                      <Trophy className="w-4 h-4 text-primary" />
-                      <span className="font-medium text-foreground">Gelar Juara</span>
+                    <div className="flex items-center gap-1 text-primary font-bold">
+                      <Trophy className="w-4 h-4 animate-glow-pulse" />
+                      <span>WIN!</span>
                     </div>
                   </div>
-                  <Link href={`/tournament/${tournament.id}`}>
-                    <Button className="w-full bg-primary hover:bg-primary/90 text-primary-foreground group shadow-lg shadow-primary/20">
-                      Lihat Turnamen
+                  <Link href={`/tournament/${tournament.id}`} className="block">
+                    <Button className="w-full bg-gradient-to-r from-primary to-emerald-600 hover:from-primary/90 hover:to-emerald-600/90 text-white font-bold py-3 rounded-xl shadow-lg shadow-primary/30 press-effect">
+                      🎮 MAINKAN
                       <Target className="ml-2 w-4 h-4 group-hover:rotate-90 transition-transform" />
                     </Button>
                   </Link>
