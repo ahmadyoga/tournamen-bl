@@ -476,13 +476,7 @@ export default function TournamentDetailPage({ params }: PageProps) {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-background via-purple-500/5 to-background">
-      {/* Floating Colorful Background */}
-      <div className="fixed inset-0 opacity-20 pointer-events-none">
-        <div className="absolute top-20 left-10 w-48 h-48 bg-cyan-500 rounded-full blur-3xl animate-float"></div>
-        <div className="absolute top-60 right-20 w-64 h-64 bg-purple-500 rounded-full blur-3xl animate-float" style={{ animationDelay: '1s' }}></div>
-        <div className="absolute bottom-40 left-1/3 w-56 h-56 bg-pink-500 rounded-full blur-3xl animate-float" style={{ animationDelay: '2s' }}></div>
-      </div>
+    <div className="min-h-screen bg-background">
 
       <div className="container mx-auto max-w-7xl px-4 py-6 md:py-8 relative z-10">
         {/* Navigation */}
@@ -495,59 +489,66 @@ export default function TournamentDetailPage({ params }: PageProps) {
           <ThemeToggle />
         </div>
 
-        {/* Tournament Header - Colorful Card */}
-        <Card className="bg-gradient-to-br from-card via-purple-500/5 to-card border-2 border-purple-400/50 shadow-2xl shadow-purple-500/20 animate-bounce-in mb-6">
-          <CardHeader className="space-y-4">
-            <div className="flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
-              <div className="min-w-0 flex-1">
-                <div className="flex items-center gap-3 mb-3">
-                  <span className="text-5xl animate-wiggle">🏆</span>
-                  <CardTitle className="text-3xl md:text-4xl font-black text-foreground break-words neon-glow">{tournament.name}</CardTitle>
+        {/* Tournament Header - Game UI Style */}
+        <div className="game-ui-container animate-bounce-in mb-6">
+          <div className="game-ui-inner">
+            <div className="game-ui-content p-4 md:p-6 space-y-4">
+              <div className="flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
+                <div className="min-w-0 flex-1">
+                  <div className="flex items-center gap-3 mb-3">
+                    <span className="text-5xl animate-wiggle">🏆</span>
+                    <h1 className="text-3xl md:text-4xl font-black text-white break-words">{tournament.name}</h1>
+                  </div>
+                  <div className="flex flex-wrap gap-2 text-sm md:text-base">
+                    <Badge className="bg-cyan-500 text-white font-bold px-4 py-2 rounded-full">
+                      ⚡ {formatLabels[tournament.format] || tournament.format}
+                    </Badge>
+                    <Badge className="bg-purple-500 text-white font-bold px-4 py-2 rounded-full">
+                      👥 Max {tournament.max_teams} Teams
+                    </Badge>
+                  </div>
                 </div>
-                <div className="flex flex-wrap gap-2 text-sm md:text-base">
-                  <Badge className="bg-gradient-to-r from-cyan-500 to-blue-500 text-white font-bold px-4 py-2">
-                    ⚡ {formatLabels[tournament.format] || tournament.format}
-                  </Badge>
-                  <Badge className="bg-gradient-to-r from-purple-500 to-pink-500 text-white font-bold px-4 py-2">
-                    👥 Max {tournament.max_teams} Teams
-                  </Badge>
-                </div>
+                <Badge className="text-base md:text-lg font-bold px-6 py-3 flex-shrink-0 shadow-lg bg-orange-500 text-white rounded-full border-0">
+                  🔥 {statusLabels[tournament.status] || tournament.status}
+                </Badge>
               </div>
-              <Badge className={`text-base md:text-lg font-bold px-6 py-3 flex-shrink-0 animate-pulse-glow shadow-lg bg-gradient-to-r from-orange-500 to-red-500 text-white border-0`}>
-                🔥 {statusLabels[tournament.status] || tournament.status}
-              </Badge>
-            </div>
 
-            {/* Tournament Info Grid */}
-            <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-              <div className="rounded-lg border border-border bg-secondary p-3 md:p-4">
-                <p className="text-xs uppercase tracking-wide text-accent mb-1">Format</p>
-                <p className="text-sm text-foreground">{formatLabels[tournament.format] || tournament.format}</p>
+              {/* Tournament Info Grid */}
+              <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+                <div className="leaderboard-row">
+                  <div className="bg-gradient-to-r from-amber-100 to-amber-50 rounded-[14px] p-3 md:p-4">
+                    <p className="text-xs uppercase tracking-wide text-amber-700 mb-1 font-bold">Format</p>
+                    <p className="text-sm text-amber-900 font-bold">{formatLabels[tournament.format] || tournament.format}</p>
+                  </div>
+                </div>
+                <div className="leaderboard-row">
+                  <div className="bg-gradient-to-r from-amber-100 to-amber-50 rounded-[14px] p-3 md:p-4">
+                    <p className="text-xs uppercase tracking-wide text-amber-700 mb-1 font-bold">Tim Terdaftar</p>
+                    <p className="text-sm text-amber-900 font-bold">{teams.length} / {tournament.max_teams}</p>
+                  </div>
+                </div>
+                <div className="leaderboard-row sm:col-span-2 lg:col-span-1">
+                  <div className="bg-gradient-to-r from-amber-100 to-amber-50 rounded-[14px] p-3 md:p-4">
+                    <p className="text-xs uppercase tracking-wide text-amber-700 mb-1 font-bold">Status</p>
+                    <p className="text-sm text-amber-900 font-bold">{statusLabels[tournament.status] || tournament.status}</p>
+                  </div>
+                </div>
               </div>
-              <div className="rounded-lg border border-border bg-secondary p-3 md:p-4">
-                <p className="text-xs uppercase tracking-wide text-accent mb-1">Tim Terdaftar</p>
-                <p className="text-sm text-foreground">{teams.length} / {tournament.max_teams}</p>
-              </div>
-              <div className="rounded-lg border border-border bg-secondary p-3 md:p-4 sm:col-span-2 lg:col-span-1">
-                <p className="text-xs uppercase tracking-wide text-accent mb-1">Status</p>
-                <p className="text-sm text-foreground">{statusLabels[tournament.status] || tournament.status}</p>
-              </div>
-            </div>
 
             {/* Additional Info */}
             {(tournament.description || tournament.location || tournament.start_date) && (
-              <div className="space-y-3 pt-4 border-t border-border">
+              <div className="space-y-3 pt-4 border-t border-amber-700/30">
                 {tournament.description && (
-                  <p className="text-sm text-muted-foreground">{tournament.description}</p>
+                  <p className="text-sm text-amber-200">{tournament.description}</p>
                 )}
                 {tournament.location && (
-                  <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                  <div className="flex items-center gap-2 text-sm text-amber-200">
                     <span>📍</span>
                     <span>{tournament.location}</span>
                   </div>
                 )}
                 {tournament.start_date && (
-                  <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                  <div className="flex items-center gap-2 text-sm text-amber-200">
                     <span>📅</span>
                     <span>
                       {new Date(tournament.start_date).toLocaleDateString('id-ID', {
@@ -567,47 +568,47 @@ export default function TournamentDetailPage({ params }: PageProps) {
                 )}
               </div>
             )}
-          </CardHeader>
-        </Card>
+            </div>
+          </div>
+        </div>
 
-        {/* Participants */}
+        {/* Participants - Game UI Style */}
         {teams.length > 0 && (
-          <Card className="bg-card border-border w-full">
-            <CardHeader>
-              <CardTitle className="text-lg md:text-xl text-foreground">Peserta ({teams.length})</CardTitle>
-            </CardHeader>
-            <CardContent className="w-full overflow-hidden">
-              <div className="grid w-full min-w-0 gap-3 sm:grid-cols-2 lg:grid-cols-3">
-                {(showAllParticipants ? teams : teams.slice(0, 6)).map((team) => (
-                  <div
-                    key={team.id}
-                    className="bg-secondary border border-border rounded-lg p-3 flex flex-col min-w-0"
-                  >
-                    <div className="font-medium text-foreground truncate min-w-0 flex-1 mb-1">
-                      {team.name}
+          <div className="game-ui-container mb-6">
+            <div className="game-ui-inner">
+              <div className="game-ui-content p-4 md:p-6 space-y-4">
+                <h2 className="text-lg md:text-xl font-black text-white flex items-center gap-2">
+                  <span>👥</span> Peserta ({teams.length})
+                </h2>
+                <div className="grid w-full min-w-0 gap-3 sm:grid-cols-2 lg:grid-cols-3">
+                  {(showAllParticipants ? teams : teams.slice(0, 6)).map((team) => (
+                    <div key={team.id} className="leaderboard-row">
+                      <div className="bg-gradient-to-r from-amber-100 to-amber-50 rounded-[14px] p-3 flex flex-col min-w-0">
+                        <div className="font-bold text-amber-900 truncate min-w-0 flex-1 mb-1">
+                          {team.name}
+                        </div>
+                        <div className="text-xs text-amber-700 space-y-0.5">
+                          {(team.players?.[1] && team.players?.[1] != '-') && (
+                            <div className="truncate">* {team.players[1]}</div>
+                          )}
+                        </div>
+                      </div>
                     </div>
-                    <div className="text-xs text-muted-foreground space-y-0.5">
-                      {/* <div className="truncate">* {team.players?.[0] || team.captain}</div> */}
-                      {(team.players?.[1] && team.players?.[1] != '-') && (
-                        <div className="truncate">* {team.players[1]}</div>
-                      )}
-                    </div>
-                  </div>
-                ))}
-              </div>
-              {teams.length > 6 && (
-                <div className="mt-4 text-center">
-                  <button
-                    onClick={() => setShowAllParticipants(!showAllParticipants)}
-                    className="text-sm text-accent hover:text-accent/80 font-medium transition-colors"
-                  >
-                    {showAllParticipants ? '← Tampilkan Lebih Sedikit' : `Tampilkan Semua (${teams.length - 6} lainnya) →`}
-                  </button>
+                  ))}
                 </div>
-              )}
-            </CardContent>
-
-          </Card>
+                {teams.length > 6 && (
+                  <div className="mt-4 text-center">
+                    <button
+                      onClick={() => setShowAllParticipants(!showAllParticipants)}
+                      className="text-sm text-amber-200 hover:text-white font-bold transition-colors"
+                    >
+                      {showAllParticipants ? '← Tampilkan Lebih Sedikit' : `Tampilkan Semua (${teams.length - 6} lainnya) →`}
+                    </button>
+                  </div>
+                )}
+              </div>
+            </div>
+          </div>
         )}
 
         {/* Group Stage */}
