@@ -64,7 +64,7 @@
 }
 
 .dark {
-  /* Dark Mode Theme Color Scheme - Perfect for Billiard Places */
+  /* Dark Mode Theme Color Scheme - Colorful Gamified */
   --background: #0a0a0a;
   /* Very Dark Background */
   --foreground: #e5e7eb;
@@ -114,6 +114,16 @@
   /* Purple */
   --chart-5: #ef4444;
   /* Red */
+
+  /* Colorful Game Palette */
+  --color-cyan: #06b6d4;
+  --color-blue: #3b82f6;
+  --color-purple: #a855f7;
+  --color-pink: #ec4899;
+  --color-orange: #f97316;
+  --color-yellow: #eab308;
+  --color-lime: #84cc16;
+  --color-red: #ef4444;
 
   /* Sidebar colors for dark mode */
   --sidebar: #0a0a0a;

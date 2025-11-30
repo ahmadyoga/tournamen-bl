@@ -220,46 +220,57 @@ export default function Home() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
-            {activeTournaments.map((tournament, index) => (
-              <Card
-                key={tournament.id}
-                className="group cursor-pointer border-2 border-primary/30 hover:border-primary transition-all duration-300 overflow-hidden bg-gradient-to-br from-card to-card/50 game-card animate-bounce-in press-effect"
-                style={{ animationDelay: `${index * 0.1}s` }}
-              >
-                <div className="relative h-40 md:h-48 overflow-hidden bg-gradient-to-br from-primary/30 via-primary/20 to-transparent">
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <div className="text-6xl md:text-7xl animate-float">🎱</div>
-                  </div>
-                  <div className="absolute top-3 right-3">
-                    <Badge className="bg-primary text-primary-foreground font-bold text-xs md:text-sm px-3 py-1 shadow-lg animate-wiggle">
-                      🔥 {tournament.status}
-                    </Badge>
-                  </div>
-                  <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-primary via-emerald-400 to-primary"></div>
-                </div>
-                <CardContent className="p-4 md:p-6 space-y-4">
-                  <h3 className="text-lg md:text-xl font-black group-hover:text-primary transition-colors line-clamp-2">
-                    {tournament.name}
-                  </h3>
-                  <div className="flex items-center justify-between text-xs md:text-sm">
-                    <div className="flex items-center gap-2 bg-muted/50 rounded-full px-3 py-2">
-                      <Users className="w-4 h-4 text-primary" />
-                      <span className="font-bold">{tournament.current_teams}/{tournament.max_teams}</span>
+            {activeTournaments.map((tournament, index) => {
+              const colors = [
+                { from: 'from-cyan-500/30', via: 'via-cyan-400/20', border: 'border-cyan-400', glow: 'shadow-cyan-500/30', text: 'text-cyan-400' },
+                { from: 'from-purple-500/30', via: 'via-purple-400/20', border: 'border-purple-400', glow: 'shadow-purple-500/30', text: 'text-purple-400' },
+                { from: 'from-pink-500/30', via: 'via-pink-400/20', border: 'border-pink-400', glow: 'shadow-pink-500/30', text: 'text-pink-400' },
+                { from: 'from-orange-500/30', via: 'via-orange-400/20', border: 'border-orange-400', glow: 'shadow-orange-500/30', text: 'text-orange-400' },
+                { from: 'from-blue-500/30', via: 'via-blue-400/20', border: 'border-blue-400', glow: 'shadow-blue-500/30', text: 'text-blue-400' },
+                { from: 'from-lime-500/30', via: 'via-lime-400/20', border: 'border-lime-400', glow: 'shadow-lime-500/30', text: 'text-lime-400' },
+              ];
+              const colorScheme = colors[index % colors.length];
+
+              return (
+                <Link href={`/tournament/${tournament.id}`} key={tournament.id} className="block">
+                  <Card
+                    className={`group cursor-pointer border-2 ${colorScheme.border} hover:scale-105 transition-all duration-300 overflow-hidden bg-gradient-to-br from-card to-card/50 game-card animate-bounce-in press-effect ${colorScheme.glow} shadow-lg`}
+                    style={{ animationDelay: `${index * 0.1}s` }}
+                  >
+                    <div className={`relative h-40 md:h-48 overflow-hidden bg-gradient-to-br ${colorScheme.from} ${colorScheme.via} to-transparent`}>
+                      <div className="absolute inset-0 flex items-center justify-center">
+                        <div className="text-6xl md:text-7xl animate-float">🎱</div>
+                      </div>
+                      <div className="absolute top-3 right-3">
+                        <Badge className={`${colorScheme.border.replace('border', 'bg')} text-white font-bold text-xs md:text-sm px-3 py-1 shadow-lg animate-wiggle`}>
+                          🔥 {tournament.status}
+                        </Badge>
+                      </div>
+                      <div className={`absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r ${colorScheme.from} via-white ${colorScheme.from}`}></div>
                     </div>
-                    <div className="flex items-center gap-1 text-primary font-bold">
-                      <Trophy className="w-4 h-4 animate-glow-pulse" />
-                      <span>WIN!</span>
-                    </div>
-                  </div>
-                  <Link href={`/tournament/${tournament.id}`} className="block">
-                    <Button className="w-full bg-gradient-to-r from-primary to-emerald-600 hover:from-primary/90 hover:to-emerald-600/90 text-white font-bold py-3 rounded-xl shadow-lg shadow-primary/30 press-effect">
-                      🎮 MAINKAN
-                      <Target className="ml-2 w-4 h-4 group-hover:rotate-90 transition-transform" />
-                    </Button>
-                  </Link>
-                </CardContent>
-              </Card>
-            ))}
+                    <CardContent className="p-4 md:p-6 space-y-4">
+                      <h3 className={`text-lg md:text-xl font-black group-hover:${colorScheme.text} transition-colors line-clamp-2`}>
+                        {tournament.name}
+                      </h3>
+                      <div className="flex items-center justify-between text-xs md:text-sm">
+                        <div className="flex items-center gap-2 bg-muted/50 rounded-full px-3 py-2">
+                          <Users className={`w-4 h-4 ${colorScheme.text}`} />
+                          <span className="font-bold">{tournament.current_teams}/{tournament.max_teams}</span>
+                        </div>
+                        <div className={`flex items-center gap-1 ${colorScheme.text} font-bold`}>
+                          <Trophy className="w-4 h-4 animate-glow-pulse" />
+                          <span>WIN!</span>
+                        </div>
+                      </div>
+                      <div className={`w-full bg-gradient-to-r ${colorScheme.from} to-transparent border-2 ${colorScheme.border} text-white font-bold py-3 rounded-xl text-center press-effect`}>
+                        🎮 MAINKAN
+                        <Target className="inline ml-2 w-4 h-4 group-hover:rotate-90 transition-transform" />
+                      </div>
+                    </CardContent>
+                  </Card>
+                </Link>
+              );
+            })}
           </div>
         </div>
       </section>

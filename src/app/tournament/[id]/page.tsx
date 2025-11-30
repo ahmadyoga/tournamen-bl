@@ -476,33 +476,45 @@ export default function TournamentDetailPage({ params }: PageProps) {
   }
 
   return (
-    <div className="min-h-screen bg-background px-4 sm:px-6 py-8">
-      <div className="container mx-auto max-w-6xl space-y-8 py-10 px-4">
+    <div className="min-h-screen bg-gradient-to-br from-background via-purple-500/5 to-background">
+      {/* Floating Colorful Background */}
+      <div className="fixed inset-0 opacity-20 pointer-events-none">
+        <div className="absolute top-20 left-10 w-48 h-48 bg-cyan-500 rounded-full blur-3xl animate-float"></div>
+        <div className="absolute top-60 right-20 w-64 h-64 bg-purple-500 rounded-full blur-3xl animate-float" style={{ animationDelay: '1s' }}></div>
+        <div className="absolute bottom-40 left-1/3 w-56 h-56 bg-pink-500 rounded-full blur-3xl animate-float" style={{ animationDelay: '2s' }}></div>
+      </div>
+
+      <div className="container mx-auto max-w-7xl px-4 py-6 md:py-8 relative z-10">
         {/* Navigation */}
         <div className="flex items-center justify-between mb-6">
-
-          <Link
-            href="/tournaments"
-            className="text-sm text-accent hover:text-foreground transition-colors inline-flex items-center gap-2"
-          >
-            ← Kembali ke turnamen
+          <Link href="/tournaments">
+            <Button variant="outline" className="border-2 border-primary/30 hover:bg-primary/10 press-effect font-bold">
+              ← Kembali
+            </Button>
           </Link>
           <ThemeToggle />
-
         </div>
 
-        {/* Tournament Header */}
-        <Card className="bg-card border-border">
+        {/* Tournament Header - Colorful Card */}
+        <Card className="bg-gradient-to-br from-card via-purple-500/5 to-card border-2 border-purple-400/50 shadow-2xl shadow-purple-500/20 animate-bounce-in mb-6">
           <CardHeader className="space-y-4">
-            <div className="flex flex-col gap-3 md:flex-row md:items-start md:justify-between">
+            <div className="flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
               <div className="min-w-0 flex-1">
-                <CardTitle className="text-2xl md:text-3xl font-bold text-foreground break-words">{tournament.name}</CardTitle>
-                <p className="text-accent mt-1 text-sm md:text-base">
-                  {formatLabels[tournament.format] || tournament.format} • Maksimal {tournament.max_teams} tim
-                </p>
+                <div className="flex items-center gap-3 mb-3">
+                  <span className="text-5xl animate-wiggle">🏆</span>
+                  <CardTitle className="text-3xl md:text-4xl font-black text-foreground break-words neon-glow">{tournament.name}</CardTitle>
+                </div>
+                <div className="flex flex-wrap gap-2 text-sm md:text-base">
+                  <Badge className="bg-gradient-to-r from-cyan-500 to-blue-500 text-white font-bold px-4 py-2">
+                    ⚡ {formatLabels[tournament.format] || tournament.format}
+                  </Badge>
+                  <Badge className="bg-gradient-to-r from-purple-500 to-pink-500 text-white font-bold px-4 py-2">
+                    👥 Max {tournament.max_teams} Teams
+                  </Badge>
+                </div>
               </div>
-              <Badge className={`text-sm font-medium flex-shrink-0 ${statusStyles[tournament.status] || ''}`}>
-                {statusLabels[tournament.status] || tournament.status}
+              <Badge className={`text-base md:text-lg font-bold px-6 py-3 flex-shrink-0 animate-pulse-glow shadow-lg bg-gradient-to-r from-orange-500 to-red-500 text-white border-0`}>
+                🔥 {statusLabels[tournament.status] || tournament.status}
               </Badge>
             </div>
 
