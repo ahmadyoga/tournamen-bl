@@ -539,36 +539,35 @@ textarea:focus::placeholder {
   animation: trophy-shine 3s linear infinite;
 }
 
-/* Game-style elements */
+/* Game UI Style - Like Reference Image */
 .game-card {
   position: relative;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border-radius: 24px;
+  box-shadow:
+    0 8px 0 rgba(0, 0, 0, 0.2),
+    inset 0 -4px 0 rgba(0, 0, 0, 0.15),
+    inset 0 4px 0 rgba(255, 255, 255, 0.15);
 }
 
 .game-card:hover {
-  transform: translateY(-8px) scale(1.02);
-  box-shadow: 0 20px 40px rgba(16, 185, 129, 0.3), 0 0 20px rgba(16, 185, 129, 0.2);
+  transform: translateY(-4px);
+  box-shadow:
+    0 12px 0 rgba(0, 0, 0, 0.2),
+    inset 0 -4px 0 rgba(0, 0, 0, 0.15),
+    inset 0 4px 0 rgba(255, 255, 255, 0.15);
 }
 
 .game-card::before {
   content: '';
   position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  border-radius: inherit;
-  padding: 2px;
-  background: linear-gradient(135deg, rgba(16, 185, 129, 0.5), rgba(5, 150, 105, 0.3));
-  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  -webkit-mask-composite: xor;
-  mask-composite: exclude;
-  opacity: 0;
-  transition: opacity 0.3s;
-}
-
-.game-card:hover::before {
-  opacity: 1;
+  top: -3px;
+  left: -3px;
+  right: -3px;
+  bottom: -3px;
+  border-radius: 26px;
+  background: linear-gradient(135deg, rgba(139, 69, 19, 0.6), rgba(101, 67, 33, 0.4));
+  z-index: -1;
 }
 
 .press-effect {
@@ -576,18 +575,59 @@ textarea:focus::placeholder {
 }
 
 .press-effect:active {
-  transform: scale(0.95);
+  transform: translateY(4px);
+  box-shadow:
+    0 4px 0 rgba(0, 0, 0, 0.2),
+    inset 0 -2px 0 rgba(0, 0, 0, 0.15),
+    inset 0 2px 0 rgba(255, 255, 255, 0.15);
 }
 
 .neon-glow {
-  text-shadow: 0 0 10px rgba(16, 185, 129, 0.8), 0 0 20px rgba(16, 185, 129, 0.5), 0 0 30px rgba(16, 185, 129, 0.3);
+  text-shadow:
+    0 2px 4px rgba(0, 0, 0, 0.3),
+    0 0 10px rgba(255, 255, 255, 0.2);
 }
 
 .score-display {
   font-family: 'Courier New', monospace;
   font-weight: bold;
-  letter-spacing: 2px;
-  text-shadow: 0 0 10px currentColor;
+  letter-spacing: 1px;
+  text-shadow:
+    2px 2px 0 rgba(0, 0, 0, 0.3),
+    0 0 10px rgba(255, 255, 255, 0.2);
+}
+
+/* Game UI Containers */
+.game-ui-container {
+  border-radius: 24px;
+  background: linear-gradient(180deg, #D2691E 0%, #A0522D 100%);
+  padding: 6px;
+  box-shadow:
+    0 8px 0 rgba(0, 0, 0, 0.3),
+    inset 0 -4px 0 rgba(0, 0, 0, 0.2),
+    inset 0 4px 0 rgba(255, 200, 100, 0.3);
+}
+
+.game-ui-inner {
+  border-radius: 20px;
+  background: linear-gradient(180deg, #F4A460 0%, #CD853F 100%);
+  padding: 4px;
+  box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.game-ui-content {
+  border-radius: 18px;
+  background: linear-gradient(180deg, #8B4513 0%, #654321 100%);
+  box-shadow: inset 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* Leaderboard Row Style */
+.leaderboard-row {
+  border-radius: 16px;
+  background: linear-gradient(90deg, #F4A460 0%, #DEB887 50%, #F4A460 100%);
+  padding: 3px;
+  box-shadow: 0 4px 0 rgba(0, 0, 0, 0.2);
+  margin-bottom: 8px;
 }
 
 /* Bracket zoom container styles */

@@ -275,104 +275,107 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Recent Matches Section */}
-      <section className="py-20 bg-background">
-        <div className="container mx-auto px-6">
-          <div className="text-center space-y-4 mb-12 animate-fade-in-up">
-            <Badge className="bg-primary/10 text-primary border-primary/20 px-4 py-1">
-              Update Pertandingan
-            </Badge>
-            <h2 className="text-4xl md:text-5xl font-bold">Pertandingan Terbaru</h2>
-            <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-              Tetap update dengan hasil pertandingan terbaru dan pertandingan yang akan datang
+      {/* Recent Matches Section - Game UI Style */}
+      <section className="py-12 md:py-20 bg-background">
+        <div className="container mx-auto px-4">
+          <div className="text-center space-y-4 mb-8 md:mb-12">
+            <div className="inline-flex items-center gap-2 px-6 py-2 rounded-full bg-gradient-to-r from-orange-500 to-red-500 text-white font-bold shadow-lg">
+              <span className="text-2xl">⚔️</span>
+              <span>MATCH UPDATES</span>
+            </div>
+            <h2 className="text-3xl md:text-5xl font-black">Pertandingan Terbaru</h2>
+            <p className="text-muted-foreground text-base md:text-lg max-w-2xl mx-auto">
+              Update live dan hasil pertandingan!
             </p>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8">
             {/* Upcoming Matches */}
-            <Card className="animate-fade-in-up border-border bg-card">
-              <CardHeader>
-                <CardTitle className="flex items-center gap-2">
-                  <Calendar className="text-primary" size={24} />
-                  Pertandingan Mendatang
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="space-y-4">
-                  {upcomingMatches.filter(match => match.status === 'pending').slice(0, 3).map((match, index) => (
-                    <div key={match.id} className="p-4 rounded-lg bg-muted/50 border border-border animate-fade-in-up hover:border-primary/30 transition-colors" style={{ animationDelay: `${index * 0.1}s` }}>
-                      <div className="flex justify-between items-center mb-2">
-                        <Badge className="bg-primary/10 text-primary border-primary/20">Terjadwal</Badge>
-                        <span className="text-xs text-muted-foreground">
-                          {formatDate(match.scheduled_time)}
-                        </span>
-                      </div>
-                      <div className="text-center space-y-2">
-                        <div className="flex items-center justify-center gap-4">
-                          <span className="font-medium text-sm truncate w-[50%]" title={match.team1_name}>{match.team1_name}</span>
-                          <span className="text-muted-foreground">vs</span>
-                          <span className="font-medium text-sm truncate w-[50%]" title={match.team2_name}>{match.team2_name}</span>
-                        </div>
-                        {match.table_number && (
-                          <div>
-                            <span className="text-xs text-muted-foreground">
-                              Meja {match.table_number}
+            <div className="game-ui-container animate-bounce-in">
+              <div className="game-ui-inner">
+                <div className="game-ui-content p-4 md:p-6 space-y-4">
+                  <div className="flex items-center gap-3 mb-4">
+                    <span className="text-3xl">📅</span>
+                    <h3 className="text-xl md:text-2xl font-black text-white">Pertandingan Mendatang</h3>
+                  </div>
+                  <div className="space-y-3">
+                    {upcomingMatches.filter(match => match.status === 'pending').slice(0, 3).map((match, index) => (
+                      <div key={match.id} className="leaderboard-row" style={{ animationDelay: `${index * 0.1}s` }}>
+                        <div className="bg-gradient-to-r from-amber-100 to-amber-50 rounded-[14px] p-4">
+                          <div className="flex justify-between items-center mb-3">
+                            <span className="bg-blue-500 text-white text-xs font-bold px-3 py-1 rounded-full shadow-md">⏰ SCHEDULED</span>
+                            <span className="text-xs font-bold text-amber-900">
+                              {formatDate(match.scheduled_time)}
                             </span>
                           </div>
-                        )}
+                          <div className="flex items-center justify-between gap-2">
+                            <span className="font-bold text-sm text-amber-900 truncate flex-1 text-left" title={match.team1_name}>{match.team1_name}</span>
+                            <span className="text-amber-700 font-black text-lg px-2">VS</span>
+                            <span className="font-bold text-sm text-amber-900 truncate flex-1 text-right" title={match.team2_name}>{match.team2_name}</span>
+                          </div>
+                          {match.table_number && (
+                            <div className="mt-2 text-center">
+                              <span className="text-xs font-bold text-amber-700">
+                                🎱 Meja {match.table_number}
+                              </span>
+                            </div>
+                          )}
+                        </div>
                       </div>
-                    </div>
-                  ))}
-                  {upcomingMatches.filter(match => match.status === 'pending').length === 0 && (
-                    <div className="p-4 rounded-lg bg-muted/50 border border-border text-center text-muted-foreground">
-                      Tidak ada pertandingan mendatang yang terjadwal
-                    </div>
-                  )}
+                    ))}
+                    {upcomingMatches.filter(match => match.status === 'pending').length === 0 && (
+                      <div className="text-center py-8 text-amber-200 font-bold">
+                        <div className="text-4xl mb-2">📭</div>
+                        Tidak ada pertandingan terjadwal
+                      </div>
+                    )}
+                  </div>
                 </div>
-              </CardContent>
-            </Card>
+              </div>
+            </div>
 
             {/* Recent Results */}
-            <Card className="animate-fade-in-up border-border bg-card" style={{ animationDelay: '0.2s' }}>
-              <CardHeader>
-                <CardTitle className="flex items-center gap-2">
-                  <Award className="text-primary" size={24} />
-                  Hasil Terbaru
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="space-y-4">
-                  {lastMatches.filter(match => match.status === 'completed').slice(0, 3).map((match, index) => (
-                    <div key={match.id} className="p-4 rounded-lg bg-muted/50 border border-border animate-fade-in-up hover:border-primary/30 transition-colors" style={{ animationDelay: `${index * 0.1}s` }}>
-                      <div className="flex justify-between items-center mb-2">
-                        <Badge variant="outline" className="border-primary text-primary">Selesai</Badge>
-                        <span className="text-xs text-muted-foreground">
-                          {formatDate(match.updated_at || '')}
-                        </span>
-                      </div>
-                      <div className="text-center">
-                        <div className="flex items-center justify-center gap-4 w-full">
-                          <div className="text-right w-1/2">
-                            <div className="font-medium text-sm">{match.team1_name}</div>
-                            <div className="text-2xl font-bold text-primary">{match.team1_score}</div>
+            <div className="game-ui-container animate-bounce-in" style={{ animationDelay: '0.2s' }}>
+              <div className="game-ui-inner">
+                <div className="game-ui-content p-4 md:p-6 space-y-4">
+                  <div className="flex items-center gap-3 mb-4">
+                    <span className="text-3xl">🏆</span>
+                    <h3 className="text-xl md:text-2xl font-black text-white">Hasil Terbaru</h3>
+                  </div>
+                  <div className="space-y-3">
+                    {lastMatches.filter(match => match.status === 'completed').slice(0, 3).map((match, index) => (
+                      <div key={match.id} className="leaderboard-row" style={{ animationDelay: `${index * 0.1}s` }}>
+                        <div className="bg-gradient-to-r from-amber-100 to-amber-50 rounded-[14px] p-4">
+                          <div className="flex justify-between items-center mb-3">
+                            <span className="bg-green-500 text-white text-xs font-bold px-3 py-1 rounded-full shadow-md">✓ FINISHED</span>
+                            <span className="text-xs font-bold text-amber-900">
+                              {formatDate(match.updated_at || '')}
+                            </span>
                           </div>
-                          <span className="text-muted-foreground">-</span>
-                          <div className="text-left w-1/2">
-                            <div className="font-medium text-sm">{match.team2_name}</div>
-                            <div className="text-2xl font-bold text-primary">{match.team2_score}</div>
+                          <div className="flex items-center justify-center gap-4">
+                            <div className="text-center flex-1">
+                              <div className="font-bold text-sm text-amber-900 mb-1">{match.team1_name}</div>
+                              <div className="text-3xl font-black score-display text-amber-900">{match.team1_score}</div>
+                            </div>
+                            <div className="text-amber-700 font-black text-2xl">-</div>
+                            <div className="text-center flex-1">
+                              <div className="font-bold text-sm text-amber-900 mb-1">{match.team2_name}</div>
+                              <div className="text-3xl font-black score-display text-amber-900">{match.team2_score}</div>
+                            </div>
                           </div>
                         </div>
                       </div>
-                    </div>
-                  ))}
-                  {lastMatches.filter(match => match.status === 'completed').length === 0 && (
-                    <div className="p-4 rounded-lg bg-muted/50 border border-border text-center text-muted-foreground">
-                      Belum ada pertandingan yang selesai
-                    </div>
-                  )}
+                    ))}
+                    {lastMatches.filter(match => match.status === 'completed').length === 0 && (
+                      <div className="text-center py-8 text-amber-200 font-bold">
+                        <div className="text-4xl mb-2">🎱</div>
+                        Belum ada hasil pertandingan
+                      </div>
+                    )}
+                  </div>
                 </div>
-              </CardContent>
-            </Card>
+              </div>
+            </div>
           </div>
         </div>
       </section>
