@@ -95,9 +95,13 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-gradient-to-br from-amber-950 via-orange-950 to-amber-950">
       {/* Hero Section */}
-      <section className="relative bg-background text-foreground overflow-hidden">
+      <section className="relative text-foreground overflow-hidden"
+        style={{
+          background: 'linear-gradient(135deg, #451a03 0%, #7c2d12 25%, #92400e 50%, #7c2d12 75%, #451a03 100%)',
+        }}
+      >
         {/* Theme Toggle */}
         <div className="absolute top-4 right-4 z-20">
           <ThemeToggle />

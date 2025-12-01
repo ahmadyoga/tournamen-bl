@@ -452,10 +452,15 @@ export default function TournamentDetailPage({ params }: PageProps) {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-background flex items-center justify-center">
-        <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-accent mx-auto mb-4"></div>
-          <p className="text-foreground">Memuat turnamen...</p>
+      <div className="min-h-screen bg-gradient-to-br from-amber-950 via-orange-950 to-amber-950 flex items-center justify-center">
+        <div className="game-ui-container animate-bounce-in">
+          <div className="game-ui-inner">
+            <div className="game-ui-content p-8 text-center space-y-4">
+              <div className="text-7xl mb-4 animate-coin-flip">🎱</div>
+              <div className="animate-spin rounded-full h-12 w-12 border-4 border-amber-600 border-t-transparent mx-auto mb-4"></div>
+              <p className="text-white font-bold text-lg">Loading Tournament...</p>
+            </div>
+          </div>
         </div>
       </div>
     )
@@ -463,29 +468,34 @@ export default function TournamentDetailPage({ params }: PageProps) {
 
   if (error || !tournament) {
     return (
-      <div className="min-h-screen bg-background flex items-center justify-center">
-        <div className="text-center">
-          <p className="text-destructive mb-4">{error || 'Turnamen tidak ditemukan'}</p>
-          <Link href="/tournaments" className="text-accent hover:text-foreground transition-colors">
-            ← Kembali ke turnamen
-          </Link>
+      <div className="min-h-screen bg-gradient-to-br from-amber-950 via-orange-950 to-amber-950 flex items-center justify-center p-4">
+        <div className="game-ui-container animate-bounce-in">
+          <div className="game-ui-inner">
+            <div className="game-ui-content p-8 text-center space-y-6">
+              <div className="text-7xl mb-4">😢</div>
+              <p className="text-red-400 mb-6 text-lg font-bold">{error || 'Turnamen tidak ditemukan'}</p>
+              <div className="leaderboard-row">
+                <Link href="/tournaments" className="bg-gradient-to-r from-amber-100 to-amber-50 rounded-[14px] px-6 py-3 text-amber-900 font-bold press-effect inline-block">
+                  ← Kembali ke turnamen
+                </Link>
+              </div>
+            </div>
+          </div>
         </div>
-
       </div>
     )
   }
 
   return (
-    <div className="min-h-screen bg-background">
-
+    <div className="min-h-screen bg-gradient-to-br from-amber-950 via-orange-950 to-amber-950">
       <div className="container mx-auto max-w-7xl px-4 py-6 md:py-8 relative z-10">
         {/* Navigation */}
         <div className="flex items-center justify-between mb-6">
-          <Link href="/tournaments">
-            <Button variant="outline" className="border-2 border-primary/30 hover:bg-primary/10 press-effect font-bold">
+          <div className="leaderboard-row">
+            <Link href="/tournaments" className="bg-gradient-to-r from-amber-100 to-amber-50 rounded-[14px] px-4 py-2 text-amber-900 font-bold press-effect inline-flex items-center gap-2">
               ← Kembali
-            </Button>
-          </Link>
+            </Link>
+          </div>
           <ThemeToggle />
         </div>
 
@@ -535,39 +545,39 @@ export default function TournamentDetailPage({ params }: PageProps) {
                 </div>
               </div>
 
-            {/* Additional Info */}
-            {(tournament.description || tournament.location || tournament.start_date) && (
-              <div className="space-y-3 pt-4 border-t border-amber-700/30">
-                {tournament.description && (
-                  <p className="text-sm text-amber-200">{tournament.description}</p>
-                )}
-                {tournament.location && (
-                  <div className="flex items-center gap-2 text-sm text-amber-200">
-                    <span>📍</span>
-                    <span>{tournament.location}</span>
-                  </div>
-                )}
-                {tournament.start_date && (
-                  <div className="flex items-center gap-2 text-sm text-amber-200">
-                    <span>📅</span>
-                    <span>
-                      {new Date(tournament.start_date).toLocaleDateString('id-ID', {
-                        day: 'numeric',
-                        month: 'long',
-                        year: 'numeric'
-                      })}
-                      {tournament.end_date && tournament.end_date !== tournament.start_date && (
-                        ` - ${new Date(tournament.end_date).toLocaleDateString('id-ID', {
+              {/* Additional Info */}
+              {(tournament.description || tournament.location || tournament.start_date) && (
+                <div className="space-y-3 pt-4 border-t border-amber-700/30">
+                  {tournament.description && (
+                    <p className="text-sm text-amber-200">{tournament.description}</p>
+                  )}
+                  {tournament.location && (
+                    <div className="flex items-center gap-2 text-sm text-amber-200">
+                      <span>📍</span>
+                      <span>{tournament.location}</span>
+                    </div>
+                  )}
+                  {tournament.start_date && (
+                    <div className="flex items-center gap-2 text-sm text-amber-200">
+                      <span>📅</span>
+                      <span>
+                        {new Date(tournament.start_date).toLocaleDateString('id-ID', {
                           day: 'numeric',
                           month: 'long',
                           year: 'numeric'
-                        })}`
-                      )}
-                    </span>
-                  </div>
-                )}
-              </div>
-            )}
+                        })}
+                        {tournament.end_date && tournament.end_date !== tournament.start_date && (
+                          ` - ${new Date(tournament.end_date).toLocaleDateString('id-ID', {
+                            day: 'numeric',
+                            month: 'long',
+                            year: 'numeric'
+                          })}`
+                        )}
+                      </span>
+                    </div>
+                  )}
+                </div>
+              )}
             </div>
           </div>
         </div>
@@ -614,7 +624,15 @@ export default function TournamentDetailPage({ params }: PageProps) {
         {/* Group Stage */}
         {groups.length > 0 && (
           <div className="space-y-6">
-            <h2 className="text-xl md:text-2xl font-bold text-foreground">Babak Grup</h2>
+            <div className="game-ui-container animate-bounce-in">
+              <div className="game-ui-inner">
+                <div className="game-ui-content p-4">
+                  <h2 className="text-xl md:text-2xl font-bold text-white neon-glow flex items-center gap-2">
+                    <span>⚡</span> Babak Grup
+                  </h2>
+                </div>
+              </div>
+            </div>
             <div className="grid gap-4 md:gap-6 xl:grid-cols-2">
               {groups.map((groupName) => {
                 const standings = calculateGroupStandings(groupName!)
@@ -656,317 +674,342 @@ export default function TournamentDetailPage({ params }: PageProps) {
                   })
 
                 return (
-                  <Card ref={(el) => { groupsContentRefs.current[groupName] = el }} key={groupName} className="bg-card border-border w-full overflow-hidden">
-                    <CardHeader>
-                      <CardTitle className="text-foreground flex items-center justify-between">
-                        <span>
-                          {groupName
-                            ? groupName.replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase())
-                            : 'Grup'}
-                        </span>
-                        <div className='flex gap-2'>
-                          <Button
-                            onClick={() => {
-                              captureScreenshot(groupName, groupName.replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase()))
-                            }}
-                            variant="outline"
-                            size="icon"
-                            className={`h-9 w-9 flex-shrink-0 ${isCapturing[groupName] ? 'opacity-0 pointer-events-none' : ''}`}
-                            title="Lihat Fullscreen"
-                            disabled={isCapturing[groupName]}
-                          >
-                            {isCapturing[groupName] ? (
-                              <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-accent"></div>
-                            ) : (
-                              <Camera className="h-4 w-4" />
-                            )}
-                          </Button>
-                          <Badge variant="outline" className="text-accent border-border">
-                            {groupMatchList.length} pertandingan
-                          </Badge>
-                        </div>
-                      </CardTitle>
-                    </CardHeader>
-                    <CardContent className="space-y-4 w-full overflow-hidden">
-                      {/* Standings */}
-                      <div>
-                        <h4 className="text-sm font-semibold text-accent mb-2">Klasemen</h4>
-                        <div className="overflow-x-auto">
-                          <Table>
-                            <TableHeader>
-                              <TableRow>
-                                <TableHead className="w-8">#</TableHead>
-                                <TableHead className="min-w-[250px]">Tim</TableHead>
-                                <TableHead className="text-center w-8">M</TableHead>
-                                <TableHead className="text-center w-8">W</TableHead>
-                                <TableHead className="text-center w-8">D</TableHead>
-                                <TableHead className="text-center w-8">L</TableHead>
-                                <TableHead className="text-center w-8">BD</TableHead>
-                                <TableHead className="text-center w-8">Pts</TableHead>
-                              </TableRow>
-                            </TableHeader>
-                            <TableBody>
-                              {standings.map((standing, index) => (
-                                <TableRow key={standing.teamId}>
-                                  <TableCell className="font-medium text-accent">{index + 1}</TableCell>
-                                  <TableCell className="font-medium text-secondary-foreground">
-                                    <div className="truncate max-w-[250px]">{standing.teamName}</div>
-                                  </TableCell>
-                                  <TableCell className="text-center text-secondary-foreground/70">{standing.played}</TableCell>
-                                  <TableCell className="text-center text-secondary-foreground/70">{standing.won}</TableCell>
-                                  <TableCell className="text-center text-secondary-foreground/70">{standing.drawn}</TableCell>
-                                  <TableCell className="text-center text-secondary-foreground/70">{standing.lost}</TableCell>
-                                  <TableCell className={`text-center font-medium ${standing.ballDifference > 0
-                                    ? 'text-green-600'
-                                    : standing.ballDifference < 0
-                                      ? 'text-red-600'
-                                      : 'text-secondary-foreground/70'
-                                    }`}>
-                                    {standing.ballDifference > 0 ? `+${standing.ballDifference}` : standing.ballDifference}
-                                  </TableCell>
-                                  <TableCell className="text-center font-semibold text-accent">{standing.points}</TableCell>
-                                </TableRow>
-                              ))}
-                            </TableBody>
-                          </Table>
-                        </div>
-                      </div>
-
-                      {/* Matches */}
-                      <div>
-                        <h4 className="text-sm font-semibold text-accent mb-2">Pertandingan</h4>
-                        <div className="space-y-3 w-full">
-                          {(expandedGroups[groupName!] ? groupMatchList : groupMatchList.slice(0, 3)).map((match) => {
-                            const team1 = teams.find(t => t.id === match.team1_id)
-                            const team2 = teams.find(t => t.id === match.team2_id)
-                            const isCompleted = match.status === 'completed'
-                            const scoreDisplay = isCompleted &&
-                              typeof match.team1_score === 'number' &&
-                              typeof match.team2_score === 'number'
-                              ? `${match.team1_score} - ${match.team2_score}`
-                              : match.status === 'in_progress' ? 'Sedang Berlangsung' : match.scheduled_at ? formatDate(match.scheduled_at) : 'Terjadwal'
-
-                            return (
-                              <div key={match.id} className="bg-secondary border border-border rounded-lg p-4 w-full overflow-hidden">
-                                <div className="flex flex-col items-center gap-2 w-full">
-                                  {/* Team 1 */}
-                                  <div className="w-full px-2">
-                                    <p className="text-sm font-medium text-foreground text-center truncate">
-                                      {team1?.name || 'TBD'}
-                                    </p>
-                                  </div>
-
-                                  {/* VS divider */}
-                                  <span className="text-xs text-muted-foreground font-semibold">vs</span>
-
-                                  {/* Team 2 */}
-                                  <div className="w-full px-2">
-                                    <p className="text-sm font-medium text-foreground text-center truncate">
-                                      {team2?.name || 'TBD'}
-                                    </p>
-                                  </div>
-
-                                  {/* Score */}
-                                  <div className="mt-2">
-                                    <span className={`text-lg font-bold ${isCompleted ? 'text-accent' : 'text-muted-foreground'}`}>
-                                      {scoreDisplay}
-                                    </span>
-                                  </div>
-
-                                  {/* Table info */}
-                                  {match.table_number && (
-                                    <div className="text-xs text-muted-foreground mt-1">
-                                      Meja {match.table_number}
-                                    </div>
+                  <div ref={(el) => { groupsContentRefs.current[groupName] = el }} key={groupName} className="game-ui-container animate-bounce-in w-full overflow-hidden">
+                    <div className="game-ui-inner">
+                      <div className="game-ui-content">
+                        <div className="p-4 md:p-6 border-b border-amber-700/30">
+                          <div className="flex items-center justify-between">
+                            <h3 className="text-xl font-bold text-white neon-glow">
+                              {groupName
+                                ? groupName.replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase())
+                                : 'Grup'}
+                            </h3>
+                            <div className='flex gap-2'>
+                              <div className="leaderboard-row">
+                                <button
+                                  onClick={() => {
+                                    captureScreenshot(groupName, groupName.replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase()))
+                                  }}
+                                  className={`bg-gradient-to-r from-amber-100 to-amber-50 rounded-[12px] p-2 press-effect ${isCapturing[groupName] ? 'opacity-0 pointer-events-none' : ''}`}
+                                  title="Lihat Fullscreen"
+                                  disabled={isCapturing[groupName]}
+                                >
+                                  {isCapturing[groupName] ? (
+                                    <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-amber-700"></div>
+                                  ) : (
+                                    <Camera className="h-4 w-4 text-amber-700" />
                                   )}
+                                </button>
+                              </div>
+                              <div className="leaderboard-row">
+                                <div className="bg-gradient-to-r from-blue-100 to-blue-50 rounded-[12px] px-3 py-2">
+                                  <span className="text-blue-800 font-bold text-sm">{groupMatchList.length} pertandingan</span>
                                 </div>
                               </div>
-                            )
-                          })}
-                        </div>
-                        {groupMatchList.length > 3 && (
-                          <div className="mt-3 text-center">
-                            <button
-                              onClick={() => toggleGroupExpansion(groupName!)}
-                              className="text-sm text-accent hover:text-accent/80 font-medium transition-colors"
-                            >
-                              {expandedGroups[groupName!] ? '← Tampilkan Lebih Sedikit' : `Tampilkan Semua Pertandingan (${groupMatchList.length - 3} lainnya) →`}
-                            </button>
+                            </div>
                           </div>
-                        )}
+                        </div>
+                        <div className="p-4 md:p-6 space-y-4 w-full overflow-hidden">
+                          {/* Standings */}
+                          <div>
+                            <div className="leaderboard-row mb-2">
+                              <h4 className="bg-gradient-to-r from-amber-100 to-amber-50 rounded-[12px] px-3 py-2 text-sm font-bold text-amber-900">🏆 Klasemen</h4>
+                            </div>
+                            <div className="overflow-x-auto">
+                              <Table>
+                                <TableHeader>
+                                  <TableRow>
+                                    <TableHead className="w-8">#</TableHead>
+                                    <TableHead className="min-w-[250px]">Tim</TableHead>
+                                    <TableHead className="text-center w-8">M</TableHead>
+                                    <TableHead className="text-center w-8">W</TableHead>
+                                    <TableHead className="text-center w-8">D</TableHead>
+                                    <TableHead className="text-center w-8">L</TableHead>
+                                    <TableHead className="text-center w-8">BD</TableHead>
+                                    <TableHead className="text-center w-8">Pts</TableHead>
+                                  </TableRow>
+                                </TableHeader>
+                                <TableBody>
+                                  {standings.map((standing, index) => (
+                                    <TableRow key={standing.teamId}>
+                                      <TableCell className="font-medium text-accent">{index + 1}</TableCell>
+                                      <TableCell className="font-medium text-secondary-foreground">
+                                        <div className="truncate max-w-[250px]">{standing.teamName}</div>
+                                      </TableCell>
+                                      <TableCell className="text-center text-secondary-foreground/70">{standing.played}</TableCell>
+                                      <TableCell className="text-center text-secondary-foreground/70">{standing.won}</TableCell>
+                                      <TableCell className="text-center text-secondary-foreground/70">{standing.drawn}</TableCell>
+                                      <TableCell className="text-center text-secondary-foreground/70">{standing.lost}</TableCell>
+                                      <TableCell className={`text-center font-medium ${standing.ballDifference > 0
+                                        ? 'text-green-600'
+                                        : standing.ballDifference < 0
+                                          ? 'text-red-600'
+                                          : 'text-secondary-foreground/70'
+                                        }`}>
+                                        {standing.ballDifference > 0 ? `+${standing.ballDifference}` : standing.ballDifference}
+                                      </TableCell>
+                                      <TableCell className="text-center font-semibold text-accent">{standing.points}</TableCell>
+                                    </TableRow>
+                                  ))}
+                                </TableBody>
+                              </Table>
+                            </div>
+                          </div>
+
+                          {/* Matches */}
+                          <div>
+                            <div className="leaderboard-row mb-2">
+                              <h4 className="bg-gradient-to-r from-amber-100 to-amber-50 rounded-[12px] px-3 py-2 text-sm font-bold text-amber-900">⚽ Pertandingan</h4>
+                            </div>
+                            <div className="space-y-3 w-full">
+                              {(expandedGroups[groupName!] ? groupMatchList : groupMatchList.slice(0, 3)).map((match) => {
+                                const team1 = teams.find(t => t.id === match.team1_id)
+                                const team2 = teams.find(t => t.id === match.team2_id)
+                                const isCompleted = match.status === 'completed'
+                                const scoreDisplay = isCompleted &&
+                                  typeof match.team1_score === 'number' &&
+                                  typeof match.team2_score === 'number'
+                                  ? `${match.team1_score} - ${match.team2_score}`
+                                  : match.status === 'in_progress' ? 'Sedang Berlangsung' : match.scheduled_at ? formatDate(match.scheduled_at) : 'Terjadwal'
+
+                                return (
+                                  <div key={match.id} className="bg-secondary border border-border rounded-lg p-4 w-full overflow-hidden">
+                                    <div className="flex flex-col items-center gap-2 w-full">
+                                      {/* Team 1 */}
+                                      <div className="w-full px-2">
+                                        <p className="text-sm font-medium text-foreground text-center truncate">
+                                          {team1?.name || 'TBD'}
+                                        </p>
+                                      </div>
+
+                                      {/* VS divider */}
+                                      <span className="text-xs text-muted-foreground font-semibold">vs</span>
+
+                                      {/* Team 2 */}
+                                      <div className="w-full px-2">
+                                        <p className="text-sm font-medium text-foreground text-center truncate">
+                                          {team2?.name || 'TBD'}
+                                        </p>
+                                      </div>
+
+                                      {/* Score */}
+                                      <div className="mt-2">
+                                        <span className={`text-lg font-bold ${isCompleted ? 'text-accent' : 'text-muted-foreground'}`}>
+                                          {scoreDisplay}
+                                        </span>
+                                      </div>
+
+                                      {/* Table info */}
+                                      {match.table_number && (
+                                        <div className="text-xs text-muted-foreground mt-1">
+                                          Meja {match.table_number}
+                                        </div>
+                                      )}
+                                    </div>
+                                  </div>
+                                )
+                              })}
+                            </div>
+                            {groupMatchList.length > 3 && (
+                              <div className="mt-3 text-center">
+                                <button
+                                  onClick={() => toggleGroupExpansion(groupName!)}
+                                  className="text-sm text-accent hover:text-accent/80 font-medium transition-colors"
+                                >
+                                  {expandedGroups[groupName!] ? '← Tampilkan Lebih Sedikit' : `Tampilkan Semua Pertandingan (${groupMatchList.length - 3} lainnya) →`}
+                                </button>
+                              </div>
+                            )}
+                          </div>
+                        </div>
                       </div>
-                    </CardContent>
-                  </Card>
+                    </div>
+                  </div>
                 )
               })}
             </div>
           </div>
-        )}
+        )
+        }
 
         {/* Knockout Bracket */}
-        {knockoutMatches.length > 0 && (
-          <TournamentBracket
-            format={tournament.format}
-            matches={matches}
-            teams={teams}
-          />
-        )}
+        {
+          knockoutMatches.length > 0 && (
+            <TournamentBracket
+              format={tournament.format}
+              matches={matches}
+              teams={teams}
+            />
+          )
+        }
 
         {/* Knockout Match Schedule */}
-        {knockoutMatches.length > 0 && (
-          <Card className="bg-card border-border">
-            <CardHeader>
-              <CardTitle className="text-foreground">Jadwal Pertandingan Knockout</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <div className="space-y-4">
-                {/* Group matches by round */}
-                {Array.from(new Set(matches.filter(m => m.match_type === 'knockout').map(m => m.round_name).filter(Boolean)))
-                  .sort((a, b) => {
-                    // Sort rounds in chronological order
-                    const getRoundPriority = (roundName: string) => {
-                      const rn = roundName?.toLowerCase() || ''
-                      if (rn.includes('round-of-16') || rn.includes('16-besar')) return 1
-                      if (rn.includes('quarter') || rn.includes('8-besar')) return 2
-                      if (rn.includes('semi') || rn.includes('4-besar')) return 3
-                      if (rn.includes('3rd') || rn.includes('3-4') || rn.includes('peringkat-3')) return 4
-                      if (rn.includes('final') && !rn.includes('grand') && !rn.includes('semi')) return 5
-                      if (rn.includes('grand')) return 6
-                      return 0
-                    }
-                    return getRoundPriority(a || '') - getRoundPriority(b || '')
-                  })
-                  .map((roundName) => {
-                    const roundMatches = matches
-                      .filter(m => m.match_type === 'knockout' && m.round_name === roundName)
-                      .sort((a, b) => {
-                        // Sort by status, then by scheduled time
-                        const statusPriority: Record<string, number> = {
-                          'in_progress': 1,
-                          'pending': 2,
-                          'completed': 3,
-                        }
-                        const statusA = statusPriority[a.status] || 999
-                        const statusB = statusPriority[b.status] || 999
-                        if (statusA !== statusB) return statusA - statusB
+        {
+          knockoutMatches.length > 0 && (
+            <div className="game-ui-container animate-bounce-in">
+              <div className="game-ui-inner">
+                <div className="game-ui-content">
+                  <div className="p-4 md:p-6 border-b border-amber-700/30">
+                    <h2 className="text-xl font-bold text-white neon-glow flex items-center gap-2">
+                      <span>🥊</span> Jadwal Pertandingan Knockout
+                    </h2>
+                  </div>
+                  <div className="p-4 md:p-6">
+                    <div className="space-y-4">
+                      {/* Group matches by round */}
+                      {Array.from(new Set(matches.filter(m => m.match_type === 'knockout').map(m => m.round_name).filter(Boolean)))
+                        .sort((a, b) => {
+                          // Sort rounds in chronological order
+                          const getRoundPriority = (roundName: string) => {
+                            const rn = roundName?.toLowerCase() || ''
+                            if (rn.includes('round-of-16') || rn.includes('16-besar')) return 1
+                            if (rn.includes('quarter') || rn.includes('8-besar')) return 2
+                            if (rn.includes('semi') || rn.includes('4-besar')) return 3
+                            if (rn.includes('3rd') || rn.includes('3-4') || rn.includes('peringkat-3')) return 4
+                            if (rn.includes('final') && !rn.includes('grand') && !rn.includes('semi')) return 5
+                            if (rn.includes('grand')) return 6
+                            return 0
+                          }
+                          return getRoundPriority(a || '') - getRoundPriority(b || '')
+                        })
+                        .map((roundName) => {
+                          const roundMatches = matches
+                            .filter(m => m.match_type === 'knockout' && m.round_name === roundName)
+                            .sort((a, b) => {
+                              // Sort by status, then by scheduled time
+                              const statusPriority: Record<string, number> = {
+                                'in_progress': 1,
+                                'pending': 2,
+                                'completed': 3,
+                              }
+                              const statusA = statusPriority[a.status] || 999
+                              const statusB = statusPriority[b.status] || 999
+                              if (statusA !== statusB) return statusA - statusB
 
-                        const parseTime = (s?: string) => {
-                          if (!s) return Infinity
-                          const t = Date.parse(s)
-                          return Number.isNaN(t) ? Infinity : t
-                        }
-                        const tA = parseTime(a.scheduled_at)
-                        const tB = parseTime(b.scheduled_at)
-                        if (tA !== tB) return tA - tB
+                              const parseTime = (s?: string) => {
+                                if (!s) return Infinity
+                                const t = Date.parse(s)
+                                return Number.isNaN(t) ? Infinity : t
+                              }
+                              const tA = parseTime(a.scheduled_at)
+                              const tB = parseTime(b.scheduled_at)
+                              if (tA !== tB) return tA - tB
 
-                        return (a.match_number || 0) - (b.match_number || 0)
-                      })
+                              return (a.match_number || 0) - (b.match_number || 0)
+                            })
 
-                    const isExpanded = expandedKnockoutRounds[roundName || '']
-                    const displayMatches = isExpanded ? roundMatches : roundMatches.slice(0, 3)
+                          const isExpanded = expandedKnockoutRounds[roundName || '']
+                          const displayMatches = isExpanded ? roundMatches : roundMatches.slice(0, 3)
 
-                    return (
-                      <div key={roundName} className="space-y-2 border border-border rounded-lg p-4 bg-secondary/50">
-                        <div className="flex items-center justify-between">
-                          <h3 className="text-lg font-semibold text-accent">
-                            {roundName
-                              ? roundName.replace(/-/g, ' ').replace(/\b\w/g, (c: string) => c.toUpperCase())
-                              : 'Round'}
-                          </h3>
-                          <Badge variant="outline" className="text-accent border-border">
-                            {roundMatches.length} pertandingan
-                          </Badge>
-                        </div>
-                        <div className="space-y-2">
-                          {displayMatches.map((match) => {
-                            const team1 = teams.find(t => t.id === match.team1_id)
-                            const team2 = teams.find(t => t.id === match.team2_id)
-                            const isCompleted = match.status === 'completed'
-                            const scoreDisplay = isCompleted &&
-                              typeof match.team1_score === 'number' &&
-                              typeof match.team2_score === 'number'
-                              ? `${match.team1_score} - ${match.team2_score}`
-                              : match.status === 'in_progress' ? 'Sedang Berlangsung' : match.scheduled_at ? formatDate(match.scheduled_at) : 'Belum Dijadwalkan'
-
-                            return (
-                              <div key={match.id} className="flex flex-col sm:flex-row items-center justify-between bg-card border border-border rounded-lg p-3 gap-2">
-                                <div className="flex-1 w-full">
-                                  <div className="text-sm text-foreground flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-2">
-                                    <span className="font-medium truncate md:w-[40%]">{team1?.name || 'TBD'}</span>
-                                    <span className="text-accent text-xs sm:text-sm flex-shrink-0">vs</span>
-                                    <span className="font-medium truncate md:w-[40%]">{team2?.name || 'TBD'}</span>
-                                  </div>
-                                </div>
-                                <div className="flex flex-col items-center md:items-end  gap-1">
-                                  <span className={`text-sm ${isCompleted ? 'text-accent font-bold' : 'text-muted-foreground font-medium'}`}>
-                                    {scoreDisplay}
-                                  </span>
-                                  {match.table_number && match.scheduled_at && (
-                                    <span className="text-xs text-muted-foreground">
-                                      Meja {match.table_number}
-                                    </span>
-                                  )}
-                                </div>
+                          return (
+                            <div key={roundName} className="space-y-2 border border-border rounded-lg p-4 bg-secondary/50">
+                              <div className="flex items-center justify-between">
+                                <h3 className="text-lg font-semibold text-accent">
+                                  {roundName
+                                    ? roundName.replace(/-/g, ' ').replace(/\b\w/g, (c: string) => c.toUpperCase())
+                                    : 'Round'}
+                                </h3>
+                                <Badge variant="outline" className="text-accent border-border">
+                                  {roundMatches.length} pertandingan
+                                </Badge>
                               </div>
-                            )
-                          })}
-                        </div>
-                        {roundMatches.length > 3 && (
-                          <div className="mt-3 text-center">
-                            <button
-                              onClick={() => setExpandedKnockoutRounds(prev => ({
-                                ...prev,
-                                [roundName || '']: !prev[roundName || '']
-                              }))}
-                              className="text-sm text-accent hover:text-accent/80 font-medium transition-colors"
-                            >
-                              {isExpanded ? '← Tampilkan Lebih Sedikit' : `Tampilkan Semua Pertandingan (${roundMatches.length - 3} lainnya) →`}
-                            </button>
-                          </div>
-                        )}
-                      </div>
-                    )
-                  })}
-              </div>
-            </CardContent>
-          </Card>
-        )}
+                              <div className="space-y-2">
+                                {displayMatches.map((match) => {
+                                  const team1 = teams.find(t => t.id === match.team1_id)
+                                  const team2 = teams.find(t => t.id === match.team2_id)
+                                  const isCompleted = match.status === 'completed'
+                                  const scoreDisplay = isCompleted &&
+                                    typeof match.team1_score === 'number' &&
+                                    typeof match.team2_score === 'number'
+                                    ? `${match.team1_score} - ${match.team2_score}`
+                                    : match.status === 'in_progress' ? 'Sedang Berlangsung' : match.scheduled_at ? formatDate(match.scheduled_at) : 'Belum Dijadwalkan'
 
-        {/* Tournament Progress */}
-        <Card className="bg-card border-border">
-          <CardHeader>
-            <CardTitle className="text-foreground">Progress Turnamen</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="space-y-4">
-              <div className="flex items-center justify-between text-sm">
-                <span className="text-muted-foreground">Pertandingan Selesai</span>
-                <span className="text-accent font-medium">
-                  {matches.filter(m => m.status === 'completed').length} / {matches.length}
-                </span>
-              </div>
-              <div className="w-full bg-secondary rounded-full h-2">
-                <div
-                  className="bg-gradient-to-r from-[var(--foreground)] to-[var(--foreground)]/80 h-2 rounded-full transition-all duration-500"
-                  style={{
-                    width: `${matches.length > 0 ? (matches.filter(m => m.status === 'completed').length / matches.length) * 100 : 0}%`
-                  }}
-                ></div>
-              </div>
-              <div className="text-center">
-                <span className="text-xs text-muted-foreground">
-                  {matches.length > 0
-                    ? `${Math.round((matches.filter(m => m.status === 'completed').length / matches.length) * 100)}% Selesai`
-                    : 'Tidak ada pertandingan terjadwal'
-                  }
-                </span>
+                                  return (
+                                    <div key={match.id} className="flex flex-col sm:flex-row items-center justify-between bg-card border border-border rounded-lg p-3 gap-2">
+                                      <div className="flex-1 w-full">
+                                        <div className="text-sm text-foreground flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-2">
+                                          <span className="font-medium truncate md:w-[40%]">{team1?.name || 'TBD'}</span>
+                                          <span className="text-accent text-xs sm:text-sm flex-shrink-0">vs</span>
+                                          <span className="font-medium truncate md:w-[40%]">{team2?.name || 'TBD'}</span>
+                                        </div>
+                                      </div>
+                                      <div className="flex flex-col items-center md:items-end  gap-1">
+                                        <span className={`text-sm ${isCompleted ? 'text-accent font-bold' : 'text-muted-foreground font-medium'}`}>
+                                          {scoreDisplay}
+                                        </span>
+                                        {match.table_number && match.scheduled_at && (
+                                          <span className="text-xs text-muted-foreground">
+                                            Meja {match.table_number}
+                                          </span>
+                                        )}
+                                      </div>
+                                    </div>
+                                  )
+                                })}
+                              </div>
+                              {roundMatches.length > 3 && (
+                                <div className="mt-3 text-center">
+                                  <button
+                                    onClick={() => setExpandedKnockoutRounds(prev => ({
+                                      ...prev,
+                                      [roundName || '']: !prev[roundName || '']
+                                    }))}
+                                    className="text-sm text-accent hover:text-accent/80 font-medium transition-colors"
+                                  >
+                                    {isExpanded ? '← Tampilkan Lebih Sedikit' : `Tampilkan Semua Pertandingan (${roundMatches.length - 3} lainnya) →`}
+                                  </button>
+                                </div>
+                              )}
+                            </div>
+                          )
+                        })}
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
-          </CardContent>
-        </Card>
+          )}
 
-        {/* Screenshot Modal */}
-        {screenshotModal.isOpen && screenshotModal.imageUrl && (
+        {/* Tournament Progress */}
+        <div className="game-ui-container animate-bounce-in">
+          <div className="game-ui-inner">
+            <div className="game-ui-content">
+              <div className="p-4 md:p-6 border-b border-amber-700/30">
+                <h2 className="text-xl font-bold text-white neon-glow flex items-center gap-2">
+                  <span>📊</span> Progress Turnamen
+                </h2>
+              </div>
+              <div className="p-4 md:p-6">
+                <div className="space-y-4">
+                  <div className="flex items-center justify-between text-sm">
+                    <span className="text-muted-foreground">Pertandingan Selesai</span>
+                    <span className="text-accent font-medium">
+                      {matches.filter(m => m.status === 'completed').length} / {matches.length}
+                    </span>
+                  </div>
+                  <div className="w-full bg-secondary rounded-full h-2">
+                    <div
+                      className="bg-gradient-to-r from-[var(--foreground)] to-[var(--foreground)]/80 h-2 rounded-full transition-all duration-500"
+                      style={{
+                        width: `${matches.length > 0 ? (matches.filter(m => m.status === 'completed').length / matches.length) * 100 : 0}%`
+                      }}
+                    ></div>
+                  </div>
+                  <div className="text-center">
+                    <span className="text-xs text-muted-foreground">
+                      {matches.length > 0
+                        ? `${Math.round((matches.filter(m => m.status === 'completed').length / matches.length) * 100)}% Selesai`
+                        : 'Tidak ada pertandingan terjadwal'
+                      }
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>     </div>
+      </div>        {/* Screenshot Modal */}
+      {
+        screenshotModal.isOpen && screenshotModal.imageUrl && (
           <div
             className="fixed inset-0 z-50 bg-background/95 backdrop-blur-sm flex items-center justify-center"
             onClick={closeModal}
@@ -1082,8 +1125,8 @@ export default function TournamentDetailPage({ params }: PageProps) {
               </div>
             </div>
           </div>
-        )}
-      </div>
+        )
+      }
     </div>
   )
 }

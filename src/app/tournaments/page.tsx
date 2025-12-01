@@ -99,7 +99,7 @@ export default function TournamentsPage() {
   ];
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-gradient-to-br from-amber-950 via-orange-950 to-amber-950">
 
       <div className="container mx-auto max-w-7xl py-8 md:py-12 px-4 relative z-10">
         {/* Header */}

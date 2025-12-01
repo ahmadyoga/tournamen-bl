@@ -16,23 +16,25 @@ export default function RegisterPage() {
   }, []);
 
   return (
-    <div className="min-h-screen p-5 relative overflow-hidden bg-background">
+    <div className="min-h-screen p-5 relative overflow-hidden bg-gradient-to-br from-amber-950 via-orange-950 to-amber-950">
       {/* Background Effects */}
-      <div className="absolute inset-0 bg-gradient-to-br from-card via-secondary to-card"></div>
+      <div className="absolute inset-0 bg-gradient-to-br from-amber-800/20 via-orange-800/20 to-amber-800/20"></div>
 
       {/* Spotlight Effects */}
-      <div className="absolute top-0 left-1/4 w-96 h-96 bg-accent/10 rounded-full blur-3xl"></div>
-      <div className="absolute top-0 right-1/4 w-96 h-96 bg-blue-500/5 rounded-full blur-3xl"></div>
+      <div className="absolute top-0 left-1/4 w-96 h-96 bg-amber-500/10 rounded-full blur-3xl"></div>
+      <div className="absolute top-0 right-1/4 w-96 h-96 bg-orange-500/10 rounded-full blur-3xl"></div>
 
       {/* Header with Back Button */}
       <div className="w-full max-w-md md:max-w-2xl mx-auto mb-2 relative z-10">
         <div className="flex items-center justify-between mb-6">
-          <Link href="/" className="inline-flex items-center gap-2 text-accent hover:text-foreground transition-colors font-medium">
-            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
-            </svg>
-            Kembali ke Halaman Utama
-          </Link>
+          <div className="leaderboard-row">
+            <Link href="/" className="bg-gradient-to-r from-amber-100 to-amber-50 rounded-[14px] px-4 py-2 text-amber-900 font-bold press-effect inline-flex items-center gap-2">
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+              </svg>
+              Kembali ke Halaman Utama
+            </Link>
+          </div>
           <ThemeToggle />
         </div>
       </div>
